@@ -1,10 +1,10 @@
-# CMS ACONTRACORRIENTE
+# Administrador CityBest
 
-El principal objetivo del cms es gestionar todo el contenido de la web de acontracorriente
+El principal objetivo del cms es gestionar todo el ecosistema de CityBest
 
 
 # Tecnologias utilizadas
-1. Vite
-2. React js
-3. Typescript
+1. React js
+2. Create react app
+3. Chart js
 
