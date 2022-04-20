@@ -9,7 +9,7 @@ import {
   Form,
   Input,
 } from "antd";
-import signinbg from "../assets/images/logoacontra.png";
+import signinbg from "../assets/images/logocitybest.png";
 import { login } from "../Services/Authentication";
 import { notify } from '../Services/notify'
 import { useHistory } from "react-router-dom";
@@ -43,10 +43,11 @@ const SignIn = () => {
     <>
       <Layout style={{
         minHeight: "100vh",
+        backgroundColor: "#f0f2f5",
       }} className="layout-default layout-signin">
         {/* <Header>
             <div className="header-col header-brand">
-              <h5>AcontraCorriente</h5>
+              <h5>CityBest</h5>
             </div>
             <div className="header-col header-nav">
               <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
@@ -140,12 +141,14 @@ const SignIn = () => {
             </Col>
             <Col
               className="sign-img"
-              style={{ padding: 50, marginTop: '10%' }}
+              style={{ padding: 15, marginTop: '5%' }}
               xs={{ span: 24 }}
               lg={{ span: 12 }}
               md={{ span: 12 }}
             >
-              <img src={signinbg} alt="" />
+              <img style={{
+                width:'50%',
+              }} src={signinbg} alt="" />
             </Col>
           </Row>
         </Content>

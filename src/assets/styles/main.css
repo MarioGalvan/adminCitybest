@@ -1,7 +1,7 @@
 
 body {
   padding: 0 0 30px 0;
-  background-color: #fafafa;
+  background-color: #f15c5c;
   letter-spacing: -0.3px;
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
@@ -34,7 +34,9 @@ body {
   padding: 33px 20px;
 }
 .layout-dashboard .ant-layout-sider.sider-primary .brand img {
-  height: 30px;
+  height:40%;
+  width: 40%;
+  background-size: cover;
 }
 .layout-dashboard .ant-layout-sider.sider-primary hr {
   margin: 18px 0;

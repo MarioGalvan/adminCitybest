@@ -1,18 +1,17 @@
 
-import { Menu} from "antd";
-import logo from "../../assets/images/logo.png";
+import { Menu, Row} from "antd";
+import logo from "../../assets/images/logocitybest.png";
 import { useMenuGeneral } from "../../Hooks/useMenuGeneral";
 
 function Sidenav() {
 
   return (
     <>
-      <div className="brand">
-        <img src={logo} alt="" />
-        <span>AcontraCorriente</span>
-      </div>
+      <Row className="brand" justify="center">
+        <img  src={logo} alt="" />
+      </Row>
       <hr />
-      <Menu theme="light" mode="inline">
+      <Menu  mode="inline">
         {useMenuGeneral()}
       </Menu>
     </>

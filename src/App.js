@@ -1,9 +1,5 @@
 
 import Home from "./pages/Home";
-import Tables from "./pages/Tables";
-import Billing from "./pages/Billing";
-import Rtl from "./pages/Rtl";
-import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
@@ -30,7 +26,7 @@ function App() {
         <Route path="/sign-in" exact component={SignIn} />
 
         <Main>
-          <ProtectedRoute exact path="/dashboard"
+          <ProtectedRoute exact path="/Dashboard"
             component={Home} />
           <ProtectedRoute exact path="/interlocutores" component={Interlocutores} />
           <ProtectedRoute exact path="/sabedorxs" component={Sabedorxs} />
