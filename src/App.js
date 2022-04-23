@@ -23,8 +23,8 @@ function App() {
         <Main>
           <ProtectedRoute exact path="/Dashboard"
             component={Home} />
-          {/* <ProtectedRoute path="*"
-            component={Home} /> */}
+          <ProtectedRoute path="/"
+            component={Home} />
           <ProtectedRoute exact path="/Cuentas"
             component={Home} />
           <ProtectedRoute exact path="/Roles"
