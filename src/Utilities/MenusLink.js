@@ -1,4 +1,4 @@
-import { DashboardOutlined, FlagOutlined, GlobalOutlined, IdcardOutlined, MessageOutlined, TagsOutlined, UsergroupAddOutlined } from "@ant-design/icons"
+import { CarOutlined, DashboardOutlined, FlagOutlined, GlobalOutlined, IdcardOutlined, LockOutlined, MessageOutlined, RocketOutlined, SafetyCertificateOutlined, TagsOutlined, TeamOutlined, UsergroupAddOutlined } from "@ant-design/icons"
 
 export const MenuLinks = [
     {
@@ -6,6 +6,40 @@ export const MenuLinks = [
         name: "Dashboard",
         url: "/Dashboard",
         icon: <DashboardOutlined />,
+    },
+    {
+        key: 'conductores',
+        name: "Conductores",
+        url: "/Conductores",
+        icon: <CarOutlined />,
+    },
+    {
+        key: 'pasajeros',
+        name: "Pasajeros",
+        url: "/Pasajeros",
+        icon: <TeamOutlined />,
+    }, {
+        key: 'marcas',
+        name: "Marcas de vehiculos",
+        url: "/Marcas",
+        icon: <TagsOutlined />,
+    },
+    {
+        key: 'aseguradoras',
+        name: "Aseguradoras",
+        url: "/Aseguradoras",
+        icon: <LockOutlined />,
+    },
+    {
+        key: 'roles',
+        name: "Roles",
+        url: "/Roles",
+        icon: <SafetyCertificateOutlined />,
+    }, {
+        key: 'cuentas',
+        name: 'Cuentas Admin',
+        url: "/Cuentas",
+        icon: <IdcardOutlined />,
     }
     // }, {
     //     key: 'interlocutores',

@@ -1,146 +1,56 @@
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
-import { Button, Space } from "antd"
+import { EyeOutlined } from "@ant-design/icons"
+import { Button, Space, Tag, Tooltip } from "antd"
 
 export const useColumnsBySection = (section) => {
 
     switch (section) {
-        case "Interlocutores":
+        case "passengers":
             return [
                 {
-                    title: "Interlocutor",
+                    title: "Passenger",
                     dataIndex: "name",
                     key: "name",
                     width: "32%",
                 },
                 {
-                    title: "Cargo(s)",
-                    dataIndex: "cargo",
-                    key: "cargo",
-                },
-
-                {
-                    title: "Descripción",
-                    key: "description",
-                    dataIndex: "description",
+                    title: 'Telefono',
+                    dataIndex: 'phone',
+                    key: 'phone',
+                    width: '20%',
                 },
                 {
-                    title: "Acciones",
-                    key: "acciones",
-                    dataIndex: "acciones",
-                    render: (text, record) => (
-                        <Space size="middle">
-                            <Button shape="circle" icon={<EditOutlined />}>
-                                Editar
-                            </Button>
-                            <Button type="danger" shape="circle" icon={<DeleteOutlined />}>
-                                Eliminar
-                            </Button>
-                        </Space>
-                    )
-                }
-
-            ]
-
-        case 'Sabedorxs':
-            return [
-                {
-                    title: "Interlocutor",
-                    dataIndex: "name",
-                    key: "name",
-                    width: "32%",
-                },
-                {
-                    title: "Cargo(s)",
-                    dataIndex: "cargo",
-                    key: "cargo",
-                },
-
-                {
-                    title: "Descripción",
-                    key: "description",
-                    dataIndex: "description",
-                },
-                {
-                    title: "Acciones",
-                    key: "acciones",
-                    dataIndex: "acciones",
-                    render: (text, record) => (
-                        <Space size="middle">
-                            <Button shape="circle" icon={<EditOutlined />}>
-                                Editar
-                            </Button>
-                            <Button type="danger" shape="circle" icon={<DeleteOutlined />}>
-                                Eliminar
-                            </Button>
-                        </Space>
-                    )
-                }
-
-            ]
-
-            case 'Cuerpos':
-                return [
-                    {
-                        title: "Cuerpo",
-                        dataIndex: "name",
-                        key: "name",
-                        width: "32%",
-                    },
-    
-                    {
-                        title: "Descripción",
-                        key: "description",
-                        dataIndex: "description",
-                    },
-                    {
-                        title: "Acciones",
-                        key: "acciones",
-                        dataIndex: "acciones",
-                        render: (text, record) => (
-                            <Space size="middle">
-                                <Button shape="circle" icon={<EditOutlined />}>
-                                    Editar
-                                </Button>
-                                <Button type="danger" shape="circle" icon={<DeleteOutlined />}>
-                                    Eliminar
-                                </Button>
-                            </Space>
+                    title: "Status",
+                    dataIndex: "blocked",
+                    key: "blocked",
+                    render: (text, record) => {
+                        return (
+                            <>
+                                {record.blocked ? <Tag color="red">Blocked</Tag> : <Tag color="green">Active</Tag>}
+                            </>
                         )
                     }
-    
-                ]
+                },
+                {
+                    title: "Acciones",
+                    key: "acciones",
+                    dataIndex: "acciones",
+                    render: (text, record) => (
+                        <Space size="middle">
+                            <Tooltip title="Ver detalle">
+                                <Button shape="circle">
+                                    <EyeOutlined style={{
+                                        fontSize: "20px",
+                                        padding: 10
+                                    }} />
+                                </Button>
+                            </Tooltip>
 
-                case 'Regiones':
-                    return [
-                        {
-                            title: "Region",
-                            dataIndex: "name",
-                            key: "name",
-                            width: "32%",
-                        },
-        
-                        {
-                            title: "Descripción",
-                            key: "description",
-                            dataIndex: "description",
-                        },
-                        {
-                            title: "Acciones",
-                            key: "acciones",
-                            dataIndex: "acciones",
-                            render: (text, record) => (
-                                <Space size="middle">
-                                    <Button shape="circle" icon={<EditOutlined />}>
-                                        Editar
-                                    </Button>
-                                    <Button type="danger" shape="circle" icon={<DeleteOutlined />}>
-                                        Eliminar
-                                    </Button>
-                                </Space>
-                            )
-                        }
-        
-                    ]
+                        </Space>
+                    )
+                }
+
+            ]
+
         default:
 
     }

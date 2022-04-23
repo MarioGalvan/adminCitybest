@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@2fd/ant-design-icons": "^2.5.0",
     "@ant-design/icons": "^4.7.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -11,6 +12,7 @@
     "antd": "^4.19.5",
     "antd-img-crop": "^4.2.0",
     "apexcharts": "^3.27.1",
+    "axios": "^0.26.1",
     "firebase": "^9.6.10",
     "install": "^0.13.0",
     "js-cookie": "^3.0.1",

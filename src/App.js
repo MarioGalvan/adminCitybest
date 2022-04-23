@@ -10,12 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Switch, Route } from "react-router-dom";
-import { Interlocutores } from "./components/interlocutores/interlocutores";
-import { Sabedorxs } from "./components/Sabedorxs/Sabedorxs";
-import { Cuerpos } from "./components/Cuerpos/Cuerpos";
-import { Regiones } from "./components/Regiones/Regiones";
-import { Resonancias } from "./components/Resonancias/Resonancias";
-import { Conversaciones } from "./components/Conversaciones/Conversaciones";
+import { Passengers } from "./components/Passengers/Passengers";
 
 function App() {
 
@@ -28,13 +23,32 @@ function App() {
         <Main>
           <ProtectedRoute exact path="/Dashboard"
             component={Home} />
-          <ProtectedRoute exact path="/interlocutores" component={Interlocutores} />
+          {/* <ProtectedRoute path="*"
+            component={Home} /> */}
+          <ProtectedRoute exact path="/Cuentas"
+            component={Home} />
+          <ProtectedRoute exact path="/Roles"
+            component={Home} />
+          <ProtectedRoute exact path="/Marcas"
+
+            component={Home} />
+          <ProtectedRoute exact path="/Aseguradoras"
+            component={Home} />
+
+          <ProtectedRoute exact path="/Pasajeros"
+            component={Passengers} />
+          <ProtectedRoute exact path="/Conductores"
+            component={Home} />
+
+
+
+          {/* <ProtectedRoute exact path="/interlocutores" component={Interlocutores} />
           <ProtectedRoute exact path="/sabedorxs" component={Sabedorxs} />
           <ProtectedRoute exact path="/cuerpos" component={Cuerpos} />
           <ProtectedRoute exact path="/resonancias" component={Resonancias} />
           <ProtectedRoute exact path="/regiones" component={Regiones} />
           <ProtectedRoute exact path="/conversaciones" component={Conversaciones} />
-          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/" component={Home} /> */}
         </Main>
       </Switch>
     </div>

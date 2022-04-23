@@ -1,8 +1,9 @@
+import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Tag, Typography } from "antd";
 const { Title } = Typography;
 export const useDataBySection = (section, data) => {
     switch (section) {
-        case "Interlocutores":
+        case "passengers":
             return data.length ? data.map(item => {
                 return {
                     name: (
@@ -12,97 +13,26 @@ export const useDataBySection = (section, data) => {
                                     className="shape-avatar"
                                     shape="square"
                                     size={40}
-                                    src={item.profilePicture ?? <Avatar.Icon icon="user" />}
+                                    icon={item?.profilePictureUrl == null && <UserOutlined />}
+                                    src={item?.profilePictureUrl}
                                 ></Avatar>
                                 <div className="avatar-info">
-                                    <Title level={5}>{item.name}</Title>
-                                    <p>{item.email || ''}</p>
+                                    <Title level={5}>
+                                        {`${item?.firstName ?? ''} ${item?.lastName ?? ''}`}
+                                    </Title>
+                                    <p>
+                                        {item?.email}
+                                    </p>
                                 </div>
                             </Avatar.Group>{" "}
                         </>
                     ),
-                    cargo: (
-                        <>
-                            {item.cargo && item.cargo.map((cargo) => <Tag color="blue">{cargo}</Tag>)}
-                        </>
-                    ),
-                    key: item.id,
-                    description: item.description,
+                    phone: item?.phone,
+                    blocked: item?.blocked
+
                 }
             }) : []
 
-        case 'Sabedorxs':
-            return data.length ? data.map(item => {
-                return {
-                    name: (
-                        <>
-                            <Avatar.Group>
-                                <Avatar
-                                    className="shape-avatar"
-                                    shape="square"
-                                    size={40}
-                                    src={item.profilePicture ?? <Avatar.Icon icon="user" />}
-                                ></Avatar>
-                                <div className="avatar-info">
-                                    <Title level={5}>{item.name}</Title>
-                                    <p>{item.email || ''}</p>
-                                </div>
-                            </Avatar.Group>{" "}
-                        </>
-                    ),
-                    key: item.id,
-                    description: item.description,
-                }
-            }) : []
-
-        case 'Cuerpos':
-            return data.length ? data.map(item => {
-                return {
-                    name: (
-                        <>
-                            <Avatar.Group>
-                                <Avatar
-                                    className="shape-avatar"
-                                    shape="square"
-                                    size={40}
-                                    src={item.profilePicture ?? <Avatar.Icon icon="user" />}
-                                ></Avatar>
-                                <div className="avatar-info">
-                                    <Title level={5}>{item.name}</Title>
-                                    <p>{item.email || ''}</p>
-                                </div>
-                            </Avatar.Group>{" "}
-                        </>
-                    ),
-                    key: item.id,
-                    description: item.description,
-                }
-            }) : []
-
-
-        case 'Regiones':
-            return data.length ? data.map(item => {
-                return {
-                    name: (
-                        <>
-                            <Avatar.Group>
-                                <Avatar
-                                    className="shape-avatar"
-                                    shape="square"
-                                    size={40}
-                                    src={item.profilePicture ?? <Avatar.Icon icon="user" />}
-                                ></Avatar>
-                                <div className="avatar-info">
-                                    <Title level={5}>{item.name}</Title>
-                                    <p>{item.email || ''}</p>
-                                </div>
-                            </Avatar.Group>{" "}
-                        </>
-                    ),
-                    key: item.id,
-                    description: item.description,
-                }
-            }) : []
         default:
 
     }

@@ -6,8 +6,9 @@ import { useState } from "react";
 import { ModalCrud } from "../ModalCrud/ModalCrud";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect } from "react";
+import { UseApiService } from "../../Services/useApiServices";
 
-function TableCrud({ sectionName = "" }) {
+function TableCrud({ sectionName = "", title="" }) {
   const [showModal, setshowModal] = useState({
     type: "",
     section: "",
@@ -18,20 +19,25 @@ function TableCrud({ sectionName = "" }) {
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
-    setloading(true);
-    async function GetData() {
-      let datatemp = [];
-      const querySnapshot = await getDocs(collection(db, sectionName));
-      querySnapshot.forEach((doc) => {
-        datatemp.push(doc.data());
-      });
-      setdata(datatemp);
-    }
-    if (!showModal.visible) {
-      GetData();
+    // setloading(true);
+    // async function GetData() {
+    //   let datatemp = [];
+    //   const querySnapshot = await getDocs(collection(db, sectionName));
+    //   querySnapshot.forEach((doc) => {
+    //     datatemp.push(doc.data());
+    //   });
+    //   setdata(datatemp);
+    // }
+    // if (!showModal.visible) {
+    //   GetData();
+    //   setloading(false);
+    // }
+    UseApiService('get',{},`/${sectionName}`).then((res)=>{
+      console.log("🚀 ~ file: TableCrud.jsx ~ line 36 ~ UseApiService ~ res", res)
+      setdata(res.data);
       setloading(false);
-    }
-  }, [db, showModal.visible, sectionName]);
+    })
+  }, [ showModal.visible, sectionName]);
 
   return (
     <>
@@ -41,26 +47,26 @@ function TableCrud({ sectionName = "" }) {
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title={`Listado de ${sectionName}`}
-              extra={
-                <>
-                  <Button
-                    onClick={() => {
-                      setshowModal({
-                        type: "create",
-                        section: sectionName,
-                        visible: true,
-                      });
-                    }}
-                    type="primary"
-                    icon={<PlusCircleOutlined />}
-                  >
-                    {sectionName !== "Cuerpos"
-                      ? ` Agregar ${sectionName.slice(0, -2)}`
-                      : 'Agregar '}
-                  </Button>
-                </>
-              }
+              title={`Listado de ${title}`}
+              // extra={
+              //   <>
+              //     <Button
+              //       onClick={() => {
+              //         setshowModal({
+              //           type: "create",
+              //           section: sectionName,
+              //           visible: true,
+              //         });
+              //       }}
+              //       type="primary"
+              //       icon={<PlusCircleOutlined />}
+              //     >
+              //       {sectionName !== "Cuerpos"
+              //         ? ` Agregar ${sectionName.slice(0, -2)}`
+              //         : 'Agregar '}
+              //     </Button>
+              //   </>
+              // }
             >
               <div className="table-responsive">
                 <Table
