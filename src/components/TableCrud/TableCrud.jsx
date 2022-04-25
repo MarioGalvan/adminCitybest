@@ -1,76 +1,74 @@
 import { Row, Col, Card, Table, Button } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { DownloadOutlined } from "@ant-design/icons";
 import { useColumnsBySection } from "../../Hooks/useColumnsBySection";
 import { useDataBySection } from "../../Hooks/useDataBySection";
 import { useState } from "react";
 import { ModalCrud } from "../ModalCrud/ModalCrud";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect } from "react";
 import { UseApiService } from "../../Services/useApiServices";
+import { ModalPreviewPassenger } from "../ModalPreview/ModalPreviewPassenger";
+import { UseExportExcel } from "../../Hooks/useExportExcel";
+import { COLORPRIMARY } from "../../Hooks/constants";
+import { ModalPreviewDriver } from "../ModalPreview/ModalPreviewDriver";
 
-function TableCrud({ sectionName = "", title="" }) {
-  const [showModal, setshowModal] = useState({
+function TableCrud({ sectionName = "", title = "" }) {
+  const [ showModal, setshowModal ] = useState({
     type: "",
     section: "",
     visible: false,
   });
-  const [data, setdata] = useState([]);
-  let db = getFirestore();
-  const [loading, setloading] = useState(false);
+  const [ data, setdata ] = useState([]);
+  const [ loading, setloading ] = useState(false);
+  const [ previewModal, setpreviewModal ] = useState({
+    visible: false,
+    data: {},
+  })
+
 
   useEffect(() => {
-    // setloading(true);
-    // async function GetData() {
-    //   let datatemp = [];
-    //   const querySnapshot = await getDocs(collection(db, sectionName));
-    //   querySnapshot.forEach((doc) => {
-    //     datatemp.push(doc.data());
-    //   });
-    //   setdata(datatemp);
-    // }
-    // if (!showModal.visible) {
-    //   GetData();
-    //   setloading(false);
-    // }
-    UseApiService('get',{},`/${sectionName}`).then((res)=>{
-      console.log("🚀 ~ file: TableCrud.jsx ~ line 36 ~ UseApiService ~ res", res)
+    UseApiService('get', {}, `/${sectionName}`).then((res) => {
+      console.log("🚀 ~ file: TableCrud.jsx ~ line 28 ~ UseApiService ~ res", res)
       setdata(res.data);
       setloading(false);
     })
-  }, [ showModal.visible, sectionName]);
+  }, [ showModal.visible, sectionName ]);
+
+  const handlePreview = (item) => {
+    setpreviewModal({
+      visible: true,
+      data: item.preview
+    });
+  }
 
   return (
     <>
       <div className="tabled">
-        <Row gutter={[24, 0]}>
+        <Row gutter={[ 24, 0 ]}>
           <Col xs="24" xl={24}>
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title={`Listado de ${title}`}
-              // extra={
-              //   <>
-              //     <Button
-              //       onClick={() => {
-              //         setshowModal({
-              //           type: "create",
-              //           section: sectionName,
-              //           visible: true,
-              //         });
-              //       }}
-              //       type="primary"
-              //       icon={<PlusCircleOutlined />}
-              //     >
-              //       {sectionName !== "Cuerpos"
-              //         ? ` Agregar ${sectionName.slice(0, -2)}`
-              //         : 'Agregar '}
-              //     </Button>
-              //   </>
-              // }
+              title={<span style={{ color: COLORPRIMARY }}>
+                {`Listado de ${title}`}
+              </span>}
+              extra={
+                <Button
+                  icon={<DownloadOutlined />} style={{
+                    background: COLORPRIMARY,
+                    color: "#fff",
+                    border: "none",
+                    fontSize: "13px",
+                  }} onClick={() => {
+                    UseExportExcel(data, sectionName)
+                  }}>
+                  Exportar
+                </Button>
+              }
+
             >
               <div className="table-responsive">
                 <Table
-                  columns={useColumnsBySection(sectionName)}
+                  columns={useColumnsBySection(sectionName, handlePreview)}
                   dataSource={useDataBySection(sectionName, data)}
                   pagination={true}
                   className="ant-border-space"
@@ -79,11 +77,14 @@ function TableCrud({ sectionName = "", title="" }) {
               </div>
             </Card>
 
-            <ModalCrud
-              showModal={showModal}
-              setshowModal={setshowModal}
-              sectionName={sectionName}
-            />
+            {sectionName === "passengers" ? (<ModalPreviewPassenger
+              previewModal={previewModal}
+              setvisible={setpreviewModal} />) : sectionName === "drivers" && (<ModalPreviewDriver
+                previewModal={previewModal}
+                setvisible={setpreviewModal} />)}
+
+
+
           </Col>
         </Row>
       </div>

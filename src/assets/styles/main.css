@@ -1,7 +1,7 @@
 
 body {
   padding: 0 0 30px 0;
-  background-color: #f15c5c;
+  background-color: #fff;
   letter-spacing: -0.3px;
   color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
@@ -2188,6 +2188,12 @@ body {
   .card-signup .sign-up-gateways .ant-btn {
     width: 100px;
   }
+  #imgLogin{
+    display:flex;
+    justify-content:center;
+    margin-left: 100px !important;
+    width: 120px !important;
+  }
 }
 
 /* end sign up */
@@ -3037,4 +3043,9 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   svg
   path {
   fill: #8c8c8c;
+}
+
+
+.ant-card-head-title{
+  white-space: normal !important;
 }

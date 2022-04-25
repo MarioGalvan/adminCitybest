@@ -1,4 +1,4 @@
-import { CarOutlined, DashboardOutlined, FlagOutlined, GlobalOutlined, IdcardOutlined, LockOutlined, MessageOutlined, RocketOutlined, SafetyCertificateOutlined, TagsOutlined, TeamOutlined, UsergroupAddOutlined } from "@ant-design/icons"
+import { CarOutlined, DashboardOutlined, IdcardOutlined, LockOutlined, SafetyCertificateOutlined, TagsOutlined, TeamOutlined, } from "@ant-design/icons"
 
 export const MenuLinks = [
     {
@@ -20,7 +20,7 @@ export const MenuLinks = [
         icon: <TeamOutlined />,
     }, {
         key: 'marcas',
-        name: "Marcas de vehiculos",
+        name: "Marcas",
         url: "/Marcas",
         icon: <TagsOutlined />,
     },

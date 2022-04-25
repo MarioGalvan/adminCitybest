@@ -1,8 +1,8 @@
 import React from 'react'
 import TableCrud from '../TableCrud/TableCrud'
 
-export const Marcas = () => {
+export const Drivers = () => {
   return (
-    <TableCrud sectionName="car-brands" title="Marcas" />
+    <TableCrud sectionName="drivers" title="Conductores" />
   )
 }

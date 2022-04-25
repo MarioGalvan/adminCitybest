@@ -11,6 +11,8 @@ import React from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { Switch, Route } from "react-router-dom";
 import { Passengers } from "./components/Passengers/Passengers";
+import { Marcas } from "./components/Marcas/Marcas";
+import { Drivers } from "./components/Drivers/Drivers";
 
 function App() {
 
@@ -23,32 +25,22 @@ function App() {
         <Main>
           <ProtectedRoute exact path="/Dashboard"
             component={Home} />
-          <ProtectedRoute path="/"
+          <ProtectedRoute exact path="/"
             component={Home} />
           <ProtectedRoute exact path="/Cuentas"
             component={Home} />
           <ProtectedRoute exact path="/Roles"
             component={Home} />
           <ProtectedRoute exact path="/Marcas"
-
-            component={Home} />
+            component={Marcas} />
           <ProtectedRoute exact path="/Aseguradoras"
             component={Home} />
 
           <ProtectedRoute exact path="/Pasajeros"
             component={Passengers} />
           <ProtectedRoute exact path="/Conductores"
-            component={Home} />
+            component={Drivers} />
 
-
-
-          {/* <ProtectedRoute exact path="/interlocutores" component={Interlocutores} />
-          <ProtectedRoute exact path="/sabedorxs" component={Sabedorxs} />
-          <ProtectedRoute exact path="/cuerpos" component={Cuerpos} />
-          <ProtectedRoute exact path="/resonancias" component={Resonancias} />
-          <ProtectedRoute exact path="/regiones" component={Regiones} />
-          <ProtectedRoute exact path="/conversaciones" component={Conversaciones} />
-          <ProtectedRoute exact path="/" component={Home} /> */}
         </Main>
       </Switch>
     </div>
