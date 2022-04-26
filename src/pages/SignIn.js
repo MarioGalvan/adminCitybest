@@ -74,7 +74,7 @@ const SignIn = () => {
               <Row justify="center">
                 <Title style={{
                   color: COLORPRIMARY, justifyContent: 'center', alignContent: 'center',
-                }} level={2}>Iniciar sesión </Title>
+                }} level={4}>Iniciar sesión </Title>
               </Row>
               {/* <Title className="font-regular text-muted" level={5}>
                 Digita tu email y contraseña para iniciar sesión
@@ -111,7 +111,7 @@ const SignIn = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="Digita tu contraseña" />
+                  <Input type="password" placeholder="Digita tu contraseña" />
                 </Form.Item>
 
 
