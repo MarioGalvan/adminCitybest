@@ -8,7 +8,7 @@ import { DriverCarInfo } from "../Drivers/DriverCarInfo";
 import { DriverDocuments } from "../Drivers/DriverDocuments";
 const { TabPane } = Tabs;
 export const ModalPreviewDriver = ({ previewModal, setvisible }) => {
-console.log("🚀 ~ file: ModalPreviewDriver.jsx ~ line 11 ~ ModalPreviewDriver ~ previewModal", previewModal)
+//console.log("🚀 ~ file: ModalPreviewDriver.jsx ~ line 11 ~ ModalPreviewDriver ~ previewModal", previewModal)
     return (
         <Modal
             width={1000}

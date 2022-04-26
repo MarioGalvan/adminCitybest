@@ -35,7 +35,8 @@ function App() {
             component={Marcas} />
           <ProtectedRoute exact path="/Aseguradoras"
             component={Home} />
-
+          <ProtectedRoute exact path='/huella_carbono'
+            component={Home} />
           <ProtectedRoute exact path="/Pasajeros"
             component={Passengers} />
           <ProtectedRoute exact path="/Conductores"

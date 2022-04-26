@@ -1,4 +1,4 @@
-import { CarOutlined, DashboardOutlined, IdcardOutlined, LockOutlined, SafetyCertificateOutlined, TagsOutlined, TeamOutlined, } from "@ant-design/icons"
+import { CarOutlined, DashboardOutlined, IdcardOutlined, LockOutlined, RocketOutlined, SafetyCertificateOutlined, TagsOutlined, TeamOutlined, } from "@ant-design/icons"
 
 export const MenuLinks = [
     {
@@ -18,7 +18,14 @@ export const MenuLinks = [
         name: "Pasajeros",
         url: "/Pasajeros",
         icon: <TeamOutlined />,
-    }, {
+    },
+    {
+        key: 'huella_carbono',
+        name: 'Huella_carbono',
+        url: '/huella_carbono',
+        icon: <RocketOutlined />
+    },
+    {
         key: 'marcas',
         name: "Marcas",
         url: "/Marcas",

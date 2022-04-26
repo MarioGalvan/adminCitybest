@@ -27,7 +27,7 @@ function TableCrud({ sectionName = "", title = "" }) {
 
   useEffect(() => {
     UseApiService('get', {}, `/${sectionName}`).then((res) => {
-      console.log("🚀 ~ file: TableCrud.jsx ~ line 28 ~ UseApiService ~ res", res)
+     //console.log("🚀 ~ file: TableCrud.jsx ~ line 28 ~ UseApiService ~ res", res)
       setdata(res.data);
       setloading(false);
     })

@@ -104,14 +104,14 @@ export const useColumnsBySection = (section, preview) => {
                     }
                 },
                 {
-                    title: "Documentos Aprovados",
+                    title: "Documentos Aprobados",
                     dataIndex: "documentsApproved",
                     key: "documentsApproved",
                     render: (text, record) => {
-                    console.log("🚀 ~ file: useColumnsBySection.js ~ line 103 ~ useColumnsBySection ~ text", text)
+                    //console.log("🚀 ~ file: useColumnsBySection.js ~ line 103 ~ useColumnsBySection ~ text", text)
                         return (
                             <>
-                                {!text ? <Tag color="red">No Aprovado</Tag> : <Tag color="green">Aprovado</Tag>}
+                                {!text ? <Tag color="red">No Aprobado</Tag> : <Tag color="green">Aprobado</Tag>}
                             </>
                         )
                     }
