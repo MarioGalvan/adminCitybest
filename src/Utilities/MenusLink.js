@@ -21,7 +21,7 @@ export const MenuLinks = [
     },
     {
         key: 'huella_carbono',
-        name: 'Huella_carbono',
+        name: 'Huella de carbono',
         url: '/huella_carbono',
         icon: <RocketOutlined />
     },
