@@ -25,6 +25,6 @@ var options = {
 };
 export const DoughnutChart = ({ datachart }) => {
     return (
-        <Doughnut options={options} data={datachart} />
+        <Doughnut width={35} height={35} options={options} data={datachart} />
     )
 }

@@ -22,6 +22,7 @@ import {
   TeamOutlined,
   TrophyOutlined,
   RocketOutlined,
+  BarChartOutlined,
 } from "@ant-design/icons";
 import Paragraph from "antd/lib/typography/Paragraph";
 
@@ -47,6 +48,7 @@ import { UseTypeDataChart } from "../Hooks/useTypeDataChart";
 function Home() {
   const { Title, Text } = Typography;
   const [ carBrands, setcarBrands ] = useState([]);
+  const [carYears, setcarYears] = useState([])
   const [ counts, setcounts ] = useState([
     {
       today: "Total conductores LATAM",
@@ -81,8 +83,9 @@ function Home() {
 
     UseApiService('get', {}, '/stats/basic/BASIC_STATS').then((res) => {
       console.log("🚀 ~ file: Home.js ~ line 55 ~ useApiService ~ res", res)
-      let { drivers, passengers, carBrands } = res.data.stats;
+      let { drivers, passengers, carBrands, carYears } = res.data.stats;
       setcarBrands(carBrands)
+      setcarYears(carYears)
       setcounts([
         {
           today: "Total conductores LATAM",
@@ -323,7 +326,7 @@ function Home() {
           ))}
         </Row>
 
-        <Row gutter={[ 24, 0 ]}>
+        <Row gutter={[ 24, 0 ]} justify='center'>
           <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
             <Card
               bordered hoverable className="criclebox h-full"
@@ -332,16 +335,29 @@ function Home() {
                   fontWeight: "bold",
                   fontSize: "18px",
                 }}>
-                   Distribución de vehículos por marca
+                  <BarChartOutlined /> Distribución de vehículos por marca
                 </span>
               }>
               {/* <Echart /> */}
               <DoughnutChart datachart={UseTypeDataChart('car-brands', carBrands)} type="car-brands" />
             </Card>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
+          <Col xs={10} sm={10} md={12} lg={12} xl={10} className="mb-24">
+            {/* <Card bordered={false} className="criclebox h-full">
               <LineChart />
+            </Card> */}
+            <Card
+              bordered hoverable className="criclebox h-full"
+              title={
+                <span style={{
+                  fontWeight: "bold",
+                  fontSize: "18px",
+                }}>
+                 <BarChartOutlined /> Distribución de vehículos por año
+                </span>
+              }>
+              {/* <LineChart /> */}
+              <DoughnutChart datachart={UseTypeDataChart('car-years', carYears)} type="car-brands" />
             </Card>
           </Col>
         </Row>
