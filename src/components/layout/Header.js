@@ -283,11 +283,12 @@ function Header({
           </div>
         </Col>
         <Col span={24} md={18} className="header-control">
-
+          
           <Link onClick={Logout} to="/sign-in" className="btn-sign-in">
             {profile}
             <span>Cerrar sesión </span>
           </Link>
+          <span>{localStorage.getItem('user')}</span>
           {/*<Input
             className="header-search"
             placeholder="Type here..."

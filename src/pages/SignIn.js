@@ -26,10 +26,14 @@ const SignIn = () => {
 
   const onFinish = (values) => {
     console.log("Success:", values);
+    
+    localStorage.setItem('user', values.email);
+
     let { email, password } = values;
     setloading(true)
     login(email, password).then((response) => {
       if (response) {
+        console.log(response, 'response');
         history.push("/dashboard");
       } else {
         setloading(false)
@@ -80,7 +84,6 @@ const SignIn = () => {
                 Digita tu email y contraseña para iniciar sesión
               </Title> */}
               <Form
-
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 layout="vertical"

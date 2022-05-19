@@ -1,0 +1,35 @@
+.containerCarboonFootprint {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1rem;
+  border-radius: 2px;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 1rem !important;
+}
+/* 
+.barByCountries,
+.barByVehicles {
+  margin-top: 1.5rem;
+} */
+
+.pagination {
+  margin: 0px auto;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+/* .selectPeriod {
+  border: "1px solid black" !important;
+  margin: 0px auto;
+} */
+
+.selectP {
+  cursor: "pointer" !important;
+  border: "1px solid red" !important;
+}
+
+.selectP:hover {
+  border: none !important;
+}

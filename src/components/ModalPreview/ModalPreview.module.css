@@ -1,0 +1,6 @@
+.containerTitle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}

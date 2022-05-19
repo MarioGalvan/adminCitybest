@@ -44,6 +44,8 @@ import { UseApiService } from "../Services/useApiServices";
 import { MonthsSpanish } from "../Services/Monts";
 import { DoughnutChart } from "../components/Chars/Doughnut";
 import { UseTypeDataChart } from "../Hooks/useTypeDataChart";
+import AllCountries from "../components/CarbonFootprint/allCountries/AllCountries";
+import ByCountries from "../components/CarbonFootprint/byCountries/ByCountries";
 
 function Home() {
   const { Title, Text } = Typography;

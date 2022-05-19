@@ -1,4 +1,3 @@
-
 body {
   padding: 0 0 30px 0;
   background-color: #fff;
@@ -34,7 +33,7 @@ body {
   padding: 33px 20px;
 }
 .layout-dashboard .ant-layout-sider.sider-primary .brand img {
-  height:40%;
+  height: 40%;
   width: 40%;
   background-size: cover;
 }
@@ -2188,9 +2187,9 @@ body {
   .card-signup .sign-up-gateways .ant-btn {
     width: 100px;
   }
-  #imgLogin{
-    display:flex;
-    justify-content:center;
+  #imgLogin {
+    display: flex;
+    justify-content: center;
     margin-left: 100px !important;
     width: 120px !important;
   }
@@ -3045,7 +3044,106 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   fill: #8c8c8c;
 }
 
-
-.ant-card-head-title{
+.ant-card-head-title {
   white-space: normal !important;
+}
+
+/* Next-Previous del Carousel */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-prev:focus {
+  font-size: inherit;
+  left: 0px;
+  z-index: 2;
+  /* background-color: #ccc;
+  border-radius: 10px;
+  padding: 12px 10px; */
+  color: black;
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-next:focus {
+  font-size: inherit;
+  right: 30px;
+  z-index: 2;
+  /* background-color: #ccc;
+  border-radius: 10px;
+  padding: 12px 10px; */
+  color: black;
+}
+
+.ant-carousel .slick-slider > button {
+  width: 5rem !important;
+  visibility: hidden;
+  content: "";
+}
+
+/* .ant-carousel .slick-slider > button:before {
+  text-indent:-999px;
+} */
+
+.ant-carousel .slick-slider > button:after {
+  content: "" !important;
+}
+
+.ant-carousel .slick-prev::before,
+.ant-carousel .slick-next::before {
+  content: "" !important;
+}
+
+/* Fin Next Previous Carousel */
+
+.ant-modal-confirm-btns button {
+  background-color: rgb(105, 72, 149) !important;
+  border: 1px solid rgb(105, 72, 149) !important;
+}
+
+/* Spinner CityBest */
+.preloader {
+  margin: auto;
+  background: url("../../assets/images/CITYlogoMORADO.png") no-repeat center;
+  background-size: 60px;
+  width: 100px;
+  height: 100px;
+  margin-top: 2rem;
+}
+
+.preloader2 {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #441a7b;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  z-index: 40;
+  animation: spin 1s ease-in-out infinite;
+  position: relative;
+  margin: auto;
+  top: -18%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Fin Sinner CityBest */
+
+.ant-select-selector {
+  border: 1px solid #441a7b !important;
+  background-color: #441a7b !important;
+  color: white !important;
+  border-radius: 12px !important;
+  text-align: center !important;
+}
+
+.ant-select-arrow {
+  color: white !important;
+}
+
+.ant-select-selector:hover {
+  box-shadow: none !important;
 }

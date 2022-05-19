@@ -1,4 +1,5 @@
-import { Row, Col, Card, Table, Button } from "antd";
+import { Row, Col, Card, Table, Button, Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { DownloadOutlined } from "@ant-design/icons";
 import { useColumnsBySection } from "../../Hooks/useColumnsBySection";
 import { useDataBySection } from "../../Hooks/useDataBySection";
@@ -18,12 +19,13 @@ function TableCrud({ sectionName = "", title = "" }) {
     visible: false,
   });
   const [ data, setdata ] = useState([]);
-  const [ loading, setloading ] = useState(false);
+  const [ loading, setloading ] = useState(true);
   const [ previewModal, setpreviewModal ] = useState({
     visible: false,
     data: {},
   })
 
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     UseApiService('get', {}, `/${sectionName}`).then((res) => {
@@ -31,13 +33,18 @@ function TableCrud({ sectionName = "", title = "" }) {
       setdata(res.data);
       setloading(false);
     })
-  }, [ showModal.visible, sectionName ]);
+  }, [ showModal.visible, sectionName, refresh ]);
 
   const handlePreview = (item) => {
     setpreviewModal({
       visible: true,
       data: item.preview
     });
+  }
+
+  const tableLoading = {
+    spinning: loading,
+    indicator: <PreloaderApp />
   }
 
   return (
@@ -72,7 +79,7 @@ function TableCrud({ sectionName = "", title = "" }) {
                   dataSource={useDataBySection(sectionName, data)}
                   pagination={true}
                   className="ant-border-space"
-                  loading={loading}
+                  loading={tableLoading}
                 />
               </div>
             </Card>
@@ -81,7 +88,8 @@ function TableCrud({ sectionName = "", title = "" }) {
               previewModal={previewModal}
               setvisible={setpreviewModal} />) : sectionName === "drivers" && (<ModalPreviewDriver
                 previewModal={previewModal}
-                setvisible={setpreviewModal} />)}
+                setvisible={setpreviewModal}
+                setRefresh={setRefresh} />)}
 
 
 
@@ -91,5 +99,14 @@ function TableCrud({ sectionName = "", title = "" }) {
     </>
   );
 }
+
+const PreloaderApp = () => {
+  return (
+    <div class="preloaderBg" id="preloader">
+      <div class="preloader"></div>
+      <div class="preloader2"></div>
+    </div>
+  );
+};
 
 export default TableCrud;
