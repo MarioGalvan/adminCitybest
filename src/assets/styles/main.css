@@ -3137,8 +3137,7 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   }
 }
 /* Fin Sinner CityBest */
-
-.styles_containerCarboonFootprint__1-Ycq .ant-select-selector {
+.containerCarboonFootprint .ant-select-selector {
   border: 1px solid #441a7b !important;
   background-color: #441a7b !important;
   color: white !important;
@@ -3146,22 +3145,20 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   text-align: center !important;
 }
 
-.styles_containerCarboonFootprint__1-Ycq .ant-select-arrow .anticon svg {
+.containerCarboonFootprint .ant-select-arrow .anticon svg {
   color: white !important;
 }
 
-.styles_containerCarboonFootprint__1-Ycq .ant-select-selector {
+.containerCarboonFootprint .ant-select-selector {
   background-color: #441a7b !important;
 }
 
-.styles_containerCarboonFootprint__1-Ycq .ant-select-selector:hover {
+.containerCarboonFootprint .ant-select-selector:hover {
   box-shadow: none !important;
 }
 
 /* Pagination: cuadro para salto de pagina */
-.styles_containerCarboonFootprint__1-Ycq
-  .ant-pagination-options-quick-jumper
-  input {
+.containerCarboonFootprint .ant-pagination-options-quick-jumper input {
   /* border: 1px solid #441a7b !important; */
   /* background-color: #441a7b !important;
   color: #fff; */
@@ -3169,22 +3166,16 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   /* border-radius: 12px !important; */
 }
 
-.styles_containerCarboonFootprint__1-Ycq
-  .ant-pagination-options-quick-jumper
-  input:hover,
-.styles_containerCarboonFootprint__1-Ycq
-  .ant-pagination-options-quick-jumper
-  input:focus,
-.styles_containerCarboonFootprint__1-Ycq
-  .ant-pagination-options-quick-jumper
-  input:select {
+.containerCarboonFootprint .ant-pagination-options-quick-jumper input:hover,
+.containerCarboonFootprint .ant-pagination-options-quick-jumper input:focus,
+.containerCarboonFootprint .ant-pagination-options-quick-jumper input:select {
   border: 1px solid #441a7b !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
 /* Button primary */
-.styles_containerCarboonFootprint__1-Ycq .ant-btn {
+.containerCarboonFootprint .ant-btn {
   background-color: #441a7b !important;
   border: 1px solid #441a7b !important;
 }
@@ -3209,4 +3200,18 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
 /* Imagen en Swal */
 .swal2-image {
   margin-bottom: 0px !important;
+}
+
+.ant-select-selector {
+  border: 1px solid #441a7b !important;
+  box-shadow: none !important;
+}
+
+.ant-select-arrow {
+  color: #441a7b !important;
+}
+
+.ant-pagination-options input {
+  border: 1px solid #441a7b !important;
+  box-shadow: none !important;
 }

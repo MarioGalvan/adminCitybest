@@ -27,7 +27,7 @@ const SelectPeriod = () => {
         </Title>
         <Select
           defaultValue="mensual"
-          style={{ width: 120 }}
+          style={{ width: 120, textAlign: 'center' }}
           className={styles.selectP}
           onChange={handleChange}
         >

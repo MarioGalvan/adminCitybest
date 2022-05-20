@@ -3,6 +3,7 @@ import { Select, Typography, Space } from "antd";
 import { useDispatch } from "react-redux";
 import { setCountryByHotel } from "../../../globalState/actions";
 import styles from "./styles.module.css";
+import { COLORPRIMARY } from "../../../Hooks/constants";
 
 const SelectCountry = () => {
   const { Option } = Select;
@@ -13,6 +14,7 @@ const SelectCountry = () => {
     console.log(`selected ${value}`);
     dispatch(setCountryByHotel(value));
   }
+  
   return (
     <div style={{marginLeft: '1rem'}}>
       <Space direction="horizontal" >
@@ -27,7 +29,7 @@ const SelectCountry = () => {
         </Title>
         <Select
           defaultValue="Todos"
-          style={{ width: 120 }}
+          style={{ width: 120, textAlign: 'center' }}
           className={styles.selectP}
           onChange={handleChange}
         >

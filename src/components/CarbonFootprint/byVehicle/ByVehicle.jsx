@@ -74,6 +74,25 @@ const labels = [
 
 const ByVehicle = ({ vehicle, color }) => {
   const { countryByVehicle } = useSelector((state) => state["carbonFootPrint"]);
+  let colorByCountry;
+
+  // useEffect(() => {
+  //   colorByCountry =
+  //     countryByVehicle === "Argentina"
+  //       ? "lightblue"
+  //       : countryByVehicle === "Chile"
+  //       ? "rgba(241, 75, 84, 1)"
+  //       : countryByVehicle === "Colombia"
+  //       ? "yellow"
+  //       : countryByVehicle === "Mexico"
+  //       ? "lightgreen"
+  //       : countryByVehicle === "Peru"
+  //       ? "lightgray"
+  //       : countryByVehicle === "Uruguay"
+  //       ? "lightblue"
+  //       : null;
+  // }, [countryByVehicle]);
+
   let data = {
     labels,
     datasets: [
@@ -81,7 +100,20 @@ const ByVehicle = ({ vehicle, color }) => {
         label: vehicle,
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         borderColor: color,
-        backgroundColor: color,
+        backgroundColor: (colorByCountry =
+          countryByVehicle === "Argentina"
+            ? "lightblue"
+            : countryByVehicle === "Chile"
+            ? "rgba(241, 75, 84, 1)"
+            : countryByVehicle === "Colombia"
+            ? "yellow"
+            : countryByVehicle === "Mexico"
+            ? "lightgreen"
+            : countryByVehicle === "Peru"
+            ? "lightgray"
+            : countryByVehicle === "Uruguay"
+            ? "lightblue"
+            : "rgba(255, 149, 98, 1)"),
         yAxisID: "y",
       },
       // {

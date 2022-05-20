@@ -26,9 +26,9 @@
 
 .selectP {
   cursor: "pointer" !important;
-  border: "1px solid red" !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.selectP:hover {
-  border: none !important;
-}
+
+

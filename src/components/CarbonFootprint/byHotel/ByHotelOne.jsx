@@ -76,6 +76,8 @@ const labels = [
 
 const ByMarkOne = ({ name, color }) => {
   const { countryByHotel } = useSelector((state) => state["carbonFootPrint"]);
+  let colorByCountry;
+
   let data = {
     labels,
     datasets: [
@@ -83,7 +85,20 @@ const ByMarkOne = ({ name, color }) => {
         label: name,
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         borderColor: color,
-        backgroundColor: color,
+        backgroundColor: (colorByCountry =
+          countryByHotel === "Argentina"
+            ? "lightblue"
+            : countryByHotel === "Chile"
+            ? "rgba(241, 75, 84, 1)"
+            : countryByHotel === "Colombia"
+            ? "yellow"
+            : countryByHotel === "Mexico"
+            ? "lightgreen"
+            : countryByHotel === "Peru"
+            ? "lightgray"
+            : countryByHotel === "Uruguay"
+            ? "lightblue"
+            : "rgba(255, 149, 98, 1)"),
         yAxisID: "y",
       },
       // {
