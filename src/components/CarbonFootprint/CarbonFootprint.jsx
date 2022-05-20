@@ -15,6 +15,7 @@ import ModalResumeByVehicle from "./byVehicle/ModalResume";
 import ModalResumeByMark from "./byMark/ModalResume";
 import ModalResumeByHotel from "./byHotel/ModalResume";
 import SelectCountry from "./byVehicle/SelectCountry";
+import Equivalencies from "./Equivalencies/Equivalencies";
 import Swal from "sweetalert2";
 
 const { TabPane } = Tabs;
@@ -53,10 +54,10 @@ const CarbonFootprint = () => {
           alignItems: "center",
         }}
       >
-        <Button onClick={showEquivalencies}>Equivalencias</Button>
+        <Equivalencies />
         <SelectPeriod />
       </div>
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="1" style={{marginTop: '0.8rem'}}>
         <TabPane
           tab={
             <span>
@@ -161,3 +162,4 @@ const CarbonFootprint = () => {
 };
 
 export default CarbonFootprint;
+

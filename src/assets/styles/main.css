@@ -3215,3 +3215,8 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   border: 1px solid #441a7b !important;
   box-shadow: none !important;
 }
+
+/* Modal equivalencies */
+.ant-modal-body {
+  padding-top: 2.3rem !important;  
+}

@@ -32,3 +32,15 @@
 .selectP:hover {
   border: none !important;
 }
+
+.containerModalEquivalencies {
+  padding-top: 4rem !important;
+}
+
+.containerModalEquivalencies p {
+  margin-top: 8px !important;
+}
+
+.containerModalEquivalencies span {
+  margin-left: 7px;
+}

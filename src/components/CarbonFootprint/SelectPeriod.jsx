@@ -14,7 +14,7 @@ const SelectPeriod = () => {
     dispatch(setPeriod(value));
   }
   return (
-    <>
+    <div>
       <Space direction="horizontal">
         <Title
           level={5}
@@ -37,7 +37,7 @@ const SelectPeriod = () => {
           <Option value="anual">Anual</Option>
         </Select>
       </Space>
-    </>
+    </div>
   );
 };
 
