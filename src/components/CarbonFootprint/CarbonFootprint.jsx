@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tabs, Typography } from "antd";
+import { Tabs, Typography, Button } from "antd";
 import { BarChartOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import styles from "./styles.module.css";
 import { COLORPRIMARY } from "../../Hooks/constants";
@@ -15,6 +15,7 @@ import ModalResumeByVehicle from "./byVehicle/ModalResume";
 import ModalResumeByMark from "./byMark/ModalResume";
 import ModalResumeByHotel from "./byHotel/ModalResume";
 import SelectCountry from "./byVehicle/SelectCountry";
+import Swal from "sweetalert2";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -24,6 +25,16 @@ const CarbonFootprint = () => {
   const [currentPageByVehicle, setCurrentPageByVehicle] = useState(1);
   const [currentPageByMark, setCurrentPageByMark] = useState(1);
   const [currentPageByHotel, setCurrentPageByHotel] = useState(1);
+
+  const showEquivalencies = () => {
+    Swal.fire({
+      title:
+        "Cuadro informativo sobre equivalencias de Toneladas en KM recorridos",
+      text: "Modal with a custom image.",
+      imageWidth: 400,
+      imageHeight: 200,
+    });
+  };
 
   return (
     <div className={styles.containerCarboonFootprint}>
@@ -38,10 +49,11 @@ const CarbonFootprint = () => {
           textAlign: "right",
           display: "flex",
           flexFlow: "row wrap",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
+        <Button onClick={showEquivalencies}>Equivalencias</Button>
         <SelectPeriod />
       </div>
       <Tabs defaultActiveKey="1">
@@ -80,6 +92,7 @@ const CarbonFootprint = () => {
           ) : null}
           <div className={styles.pagination}>
             <Pagination
+              currentPageByCountry={currentPageByCountry}
               setCurrentPageByCountry={setCurrentPageByCountry}
               byCountry
             />
@@ -105,6 +118,7 @@ const CarbonFootprint = () => {
           ) : null}
           <div className={styles.pagination}>
             <Pagination
+              currentPageByVehicle={currentPageByVehicle}
               setCurrentPageByVehicle={setCurrentPageByVehicle}
               byVehicle
             />

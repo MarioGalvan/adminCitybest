@@ -10,6 +10,8 @@ const PaginationComponent = ({
   setCurrentPageByVehicle,
   setCurrentPageByMark,
   setCurrentPageByHotel,
+  currentPageByCountry,
+  currentPageByVehicle,
   currentPageByMark,
   currentPageByHotel,
 }) => {
@@ -25,7 +27,17 @@ const PaginationComponent = ({
 
   return (
     <Pagination
-      current={byMark ? currentPageByMark : currentPageByHotel}
+      current={
+        byCountry
+          ? currentPageByCountry
+          : byVehicle
+          ? currentPageByVehicle
+          : byMark
+          ? currentPageByMark
+          : byHotel
+          ? currentPageByHotel
+          : null
+      }
       onChange={onChange}
       showQuickJumper
       locale={{ jump_to: "Ir a página", page: "" }}
