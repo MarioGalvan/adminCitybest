@@ -16,7 +16,6 @@ export const CardComponent = ({
 }) => {
   const StylesSpan = {
     fontWeight: "bold",
-    textDecoration: "underline",
   };
 
   return (

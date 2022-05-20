@@ -3206,3 +3206,7 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   color: white !important;
 }
 
+/* Imagen en Swal */
+.swal2-image {
+  margin-bottom: 0px !important;
+}

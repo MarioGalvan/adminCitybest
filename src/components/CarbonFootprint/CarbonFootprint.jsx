@@ -10,10 +10,11 @@ import ByMark from "./byMark/ByMark";
 import ByHotel from "./byHotel/ByHotel";
 import Pagination from "./pagination/PaginationComponent";
 import SelectPeriod from "./SelectPeriod";
-import ModalResumeByCountries from './byCountries/ModalResume';
-import ModalResumeByVehicle from './byVehicle/ModalResume';
-import ModalResumeByMark from './byMark/ModalResume';
-import ModalResumeByHotel from './byHotel/ModalResume';
+import ModalResumeByCountries from "./byCountries/ModalResume";
+import ModalResumeByVehicle from "./byVehicle/ModalResume";
+import ModalResumeByMark from "./byMark/ModalResume";
+import ModalResumeByHotel from "./byHotel/ModalResume";
+import SelectCountry from "./byVehicle/SelectCountry";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -94,6 +95,7 @@ const CarbonFootprint = () => {
           }
           key="3"
         >
+          <SelectCountry />
           {currentPageByVehicle === 1 ? (
             <ByVehicle vehicle="Eléctrico" color="rgba(0, 255, 128, 0.7)" />
           ) : currentPageByVehicle === 2 ? (

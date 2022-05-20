@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +13,7 @@ import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { COLORPRIMARY } from "../../../Hooks/constants";
 import styles from "../styles.module.css";
+import { useSelector } from "react-redux";
 
 ChartJS.register(
   CategoryScale,
@@ -74,7 +75,8 @@ const labels = [
 ];
 
 const ByMarkOne = ({ name, color }) => {
-  const data = {
+  const { countryByHotel } = useSelector((state) => state["carbonFootPrint"]);
+  let data = {
     labels,
     datasets: [
       {
@@ -91,29 +93,30 @@ const ByMarkOne = ({ name, color }) => {
       //   backgroundColor: "rgba(53, 162, 235, 0.5)",
       //   yAxisID: "y1",
       // },
-      // {
-      //   label: "Mexico",
-      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      //   borderColor: "rgb(53, 162, 235)",
-      //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-      //   yAxisID: "y2",
-      // },
-      // {
-      //   label: "Peru",
-      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      //   borderColor: "rgb(53, 162, 235)",
-      //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-      //   yAxisID: "y3",
-      // },
-      // {
-      //   label: "Colombia",
-      //   data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      //   borderColor: "rgb(53, 162, 235)",
-      //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-      //   yAxisID: "y4",
-      // },
     ],
   };
+
+  useEffect(() => {
+    data = {
+      labels,
+      datasets: [
+        {
+          label: name,
+          data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+          borderColor: color,
+          backgroundColor: color,
+          yAxisID: "y",
+        },
+        // {
+        //   label: "Chile",
+        //   data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        //   borderColor: "rgb(53, 162, 235)",
+        //   backgroundColor: "rgba(53, 162, 235, 0.5)",
+        //   yAxisID: "y1",
+        // },
+      ],
+    };
+  }, [countryByHotel]);
 
   return <Bar width={35} height={12} options={options} data={data} />;
 };

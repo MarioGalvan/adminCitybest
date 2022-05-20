@@ -268,9 +268,9 @@ function Header({
       title: "Huella de carbono",
       // text: 'Modal with a custom image.',
       html: "<p>La huella de carbono nace como una medida de cuantificar y generar un indicador del impacto que una actividad o proceso tiene sobre el cambio climático, más allá de los grandes emisores. La huella de carbono se define como el conjunto de emisiones de gases de efecto invernadero producidas, directa o indirectamente, por personas, organizaciones, productos, eventos o regiones geográficas, en términos de CO2 equivalentes, y sirve como una útil herramienta de gestión para conocer las conductas o acciones que están contribuyendo a aumentar nuestras emisiones, cómo podemos mejorarlas y realizar un uso más eficiente de los recursos.</p>",
-      imageUrl: "https://2.bp.blogspot.com/-HAf7FmBbVMQ/UzvL1aNS6PI/AAAAAAAAESg/DiiHGZV9te0/s1600/huella-1.jpg",
-      imageWidth: 300,
-      imageHeight: 180,
+      imageUrl: "https://i.ibb.co/pPp3Vpf/C02.png",
+      imageWidth: 150,
+      imageHeight: 100,
       imageAlt: "CO2",
       footer: `<a href="https://mma.gob.cl/cambio-climatico/cc-02-7-huella-de-carbono" target="_blank">https://mma.gob.cl/cambio-climatico/cc-02-7-huella-de-carbono</a>`,
     });

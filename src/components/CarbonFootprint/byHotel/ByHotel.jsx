@@ -3,7 +3,8 @@ import hotels from "./data";
 import Autocomplete from "../Autocomplete";
 import { Space, Typography } from "antd";
 import Pagination from "../pagination/PaginationComponent";
-import styles from '../styles.module.css';
+import SelectCountry from "./SelectCountry";
+import styles from "../styles.module.css";
 
 const ByHotel = ({ currentPageByHotel, setCurrentPageByHotel }) => {
   const { Title } = Typography;
@@ -14,19 +15,32 @@ const ByHotel = ({ currentPageByHotel, setCurrentPageByHotel }) => {
 
   return (
     <div className={styles.byHotelContainer} style={{ marginTop: "5px" }}>
-      <Space direction={"horizontal"} style={{ alignItems: "center" }}>
-        <Title
-          level={5}
-          style={{
-            margin: "0px",
-            marginRight: "5px",
-          }}
-        >
-          Buscador:
-        </Title>
-        <Autocomplete className={styles.searchHotel} setCurrentPageByHotel={setCurrentPageByHotel} byHotel />
-      </Space>
-
+      <div
+        style={{
+          display: "flex",
+          flexFlow: "row wrap",
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Space>
+          <Title
+            level={5}
+            style={{
+              margin: "0px",
+              marginRight: "5px",
+            }}
+          >
+            Buscador:
+          </Title>
+          <Autocomplete
+            className={styles.searchHotel}
+            setCurrentPageByHotel={setCurrentPageByHotel}
+            byHotel
+          />
+        </Space>
+        <SelectCountry />
+      </div>
       {currentComponentHotel}
       <div
         style={{
