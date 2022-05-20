@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,8 +10,12 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { ForwardOutlined } from "@ant-design/icons";
 import { faker } from "@faker-js/faker";
 import { useSelector } from "react-redux";
+import { Button } from "antd";
+import { COLORPRIMARY } from "../../../Hooks/constants";
+import ModalResume from "./ModalResume";
 
 ChartJS.register(
   CategoryScale,
@@ -105,7 +109,24 @@ const AllCountries = () => {
     ],
   };
 
-  return <Line width={35} height={12} options={options} data={data} />;
+  return (
+    <>
+      <Line width={35} height={12} options={options} data={data} />
+      {/* <Button
+        type="primary"
+        style={{
+          marginTop: "1.5rem",
+          backgroundColor: COLORPRIMARY,
+          border: `1px solid ${COLORPRIMARY}`,
+        }}
+        onClick={resume}
+        block
+      >
+        VER RESÚMEN
+      </Button> */}
+      <ModalResume />
+    </>
+  );
 };
 
 export default AllCountries;

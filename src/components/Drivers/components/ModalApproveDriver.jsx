@@ -41,13 +41,13 @@ const ModalApproveDriver = ({ id, setvisible, setRefresh }) => {
   };
 
   return (
-    <>
+    <div className={styles.modalResume}>
       <Button
         type="primary"
         onClick={showModal}
         style={{
-          backgroundColor: "rgb(105, 72, 149)",
-          border: "1px solid rgb(105, 72, 149)",
+          backgroundColor: "#441a7b",
+          border: "1px solid #441a7b",
         }}
       >
         APROBAR
@@ -67,7 +67,7 @@ const ModalApproveDriver = ({ id, setvisible, setRefresh }) => {
           style={{
             textAlign: "center",
             fontWeight: "bolder",
-            textShadow: "2px 2px 3px gray",
+            
           }}
         >
           {modalText}
@@ -87,7 +87,7 @@ const ModalApproveDriver = ({ id, setvisible, setRefresh }) => {
           </Select>
         )}
       </Modal>
-    </>
+    </div>
   );
 };
 

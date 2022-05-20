@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 import {
@@ -27,6 +26,12 @@ import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
 import { Logout } from "../../Services/Authentication";
+import logoU from "../../assets/images/UConce.png";
+import global from "../../assets/images/global.png";
+import { COLORPRIMARY } from "../../Hooks/constants";
+import Swal from "sweetalert2";
+import styles from "./styles.module.css";
+import CO2 from "../../assets/images/C02.png";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -250,21 +255,42 @@ function Header({
 }) {
   const { Title, Text } = Typography;
 
-  const [ visible, setVisible ] = useState(false);
-  const [ sidenavType, setSidenavType ] = useState("transparent");
+  const [visible, setVisible] = useState(false);
+  const [sidenavType, setSidenavType] = useState("transparent");
 
   useEffect(() => window.scrollTo(0, 0));
 
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
 
+  const moreInfo = () => {
+    Swal.fire({
+      title: "Huella de carbono",
+      // text: 'Modal with a custom image.',
+      html: "<p>La huella de carbono nace como una medida de cuantificar y generar un indicador del impacto que una actividad o proceso tiene sobre el cambio climático, más allá de los grandes emisores. La huella de carbono se define como el conjunto de emisiones de gases de efecto invernadero producidas, directa o indirectamente, por personas, organizaciones, productos, eventos o regiones geográficas, en términos de CO2 equivalentes, y sirve como una útil herramienta de gestión para conocer las conductas o acciones que están contribuyendo a aumentar nuestras emisiones, cómo podemos mejorarlas y realizar un uso más eficiente de los recursos.</p>",
+      imageUrl: "https://2.bp.blogspot.com/-HAf7FmBbVMQ/UzvL1aNS6PI/AAAAAAAAESg/DiiHGZV9te0/s1600/huella-1.jpg",
+      imageWidth: 300,
+      imageHeight: 180,
+      imageAlt: "CO2",
+      footer: `<a href="https://mma.gob.cl/cambio-climatico/cc-02-7-huella-de-carbono" target="_blank">https://mma.gob.cl/cambio-climatico/cc-02-7-huella-de-carbono</a>`,
+    });
+
+    // Swal.fire({
+    //   // icon: "info",
+    //   title: "Huella de carbono",
+    //   html: "<p>La huella de carbono nace como una medida de cuantificar y generar un indicador del impacto que una actividad o proceso tiene sobre el cambio climático, más allá de los grandes emisores. La huella de carbono se define como el conjunto de emisiones de gases de efecto invernadero producidas, directa o indirectamente, por personas, organizaciones, productos, eventos o regiones geográficas, en términos de CO2 equivalentes, y sirve como una útil herramienta de gestión para conocer las conductas o acciones que están contribuyendo a aumentar nuestras emisiones, cómo podemos mejorarlas y realizar un uso más eficiente de los recursos.</p>",
+    //   customClass: styles.parrafoHuella,
+    //   footer: `<a href="https://mma.gob.cl/cambio-climatico/cc-02-7-huella-de-carbono" target="_blank">https://mma.gob.cl/cambio-climatico/cc-02-7-huella-de-carbono</a>`,
+    // });
+  };
+
   return (
     <>
       {/* <div className="setting-drwer" onClick={showDrawer}>
         {setting}
       </div> */}
-      <Row gutter={[ 24, 0 ]}>
-        <Col span={24} md={6}>
+      <Row gutter={[24, 0]}>
+        <Col span={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
               <NavLink to="/">Home</NavLink>
@@ -281,21 +307,97 @@ function Header({
               {subName.replace("/", "")}
             </span>
           </div>
+
+          {/* {window.location.pathname === "/huella_carbono" && (
+            <Col span={24} md={20}>
+              <img src={logoU} alt="imageU" />
+            </Col>
+          )} */}
         </Col>
-        <Col span={24} md={18} className="header-control">
-          
+        {/* {window.location.pathname === "/huella_carbono" && (
+          <Col span={24} md={4}>
+            <img src={logoU} alt="imageU" />
+          </Col>
+        )} */}
+        <Col span={18} md={18} className="header-control">
           <Link onClick={Logout} to="/sign-in" className="btn-sign-in">
             {profile}
             <span>Cerrar sesión </span>
           </Link>
-          <span>{localStorage.getItem('user')}</span>
+          <span>{localStorage.getItem("user")}</span>
+
           {/*<Input
             className="header-search"
             placeholder="Type here..."
             prefix={<SearchOutlined />}
                     />*/}
         </Col>
+        {window.location.pathname === "/huella_carbono" && (
+          <Row>
+            <Button
+              type="primary"
+              style={{
+                marginTop: "1rem",
+                marginLeft: "0.5rem",
+                backgroundColor: COLORPRIMARY,
+                border: `1px solid ${COLORPRIMARY}`,
+                width: "50%",
+                minWidth: "120px",
+                maxWidth: "200px",
+              }}
+              onClick={moreInfo}
+              block
+            >
+              Más info...
+            </Button>
+          </Row>
+        )}
       </Row>
+      {/* <Row style={{ marginTop: "1rem" }}>
+        <Col span={24}>
+          {window.location.pathname === "/huella_carbono" && (
+            <Col
+              span={24}
+              style={{
+                backgroundColor: "rgba(68, 26, 123, 0.5)",
+                width: "100%",
+                borderRadius: '7px'
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexFlow: "row wrap",
+                  justifyContent: "center",
+                  alignItems: " center",
+                  padding: "5px",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "rgba(255, 255, 255, 1)",
+                    fontWeight: "bold",
+                    textShadow: '3px 3px 1px black'
+                  }}
+                >
+                  Support:
+                </span>
+                <figure style={{ marginLeft: "2rem", marginRight: "2rem" }}>
+                  <img
+                    src={logoU}
+                    width={"150px"}
+                    alt="imageU"
+                  />
+                </figure>
+                <figure>
+                  <img src={global} width={"55x"} alt="global"/>
+                </figure>
+              </div>
+            </Col>
+          )}
+        </Col>
+      </Row> */}
     </>
   );
 }

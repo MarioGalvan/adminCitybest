@@ -1,19 +1,19 @@
 import React from "react";
-import marks from "./data";
+import hotels from "./data";
 import Autocomplete from "../Autocomplete";
 import { Space, Typography } from "antd";
 import Pagination from "../pagination/PaginationComponent";
 import styles from '../styles.module.css';
 
-const ByMark = ({ currentPageByMark, setCurrentPageByMark }) => {
+const ByHotel = ({ currentPageByHotel, setCurrentPageByHotel }) => {
   const { Title } = Typography;
 
-  let currentComponentMark = marks.find(
-    (mark) => mark.id === currentPageByMark
+  let currentComponentHotel = hotels.find(
+    (hotel) => hotel.id === currentPageByHotel
   )?.component;
 
   return (
-    <div className={styles.byMarkContainer} style={{ marginTop: "5px" }}>
+    <div className={styles.byHotelContainer} style={{ marginTop: "5px" }}>
       <Space direction={"horizontal"} style={{ alignItems: "center" }}>
         <Title
           level={5}
@@ -24,9 +24,10 @@ const ByMark = ({ currentPageByMark, setCurrentPageByMark }) => {
         >
           Buscador:
         </Title>
-        <Autocomplete setCurrentPageByMark={setCurrentPageByMark} byMark />
+        <Autocomplete className={styles.searchHotel} setCurrentPageByHotel={setCurrentPageByHotel} byHotel />
       </Space>
-      {currentComponentMark}
+
+      {currentComponentHotel}
       <div
         style={{
           margin: "0px auto",
@@ -35,13 +36,13 @@ const ByMark = ({ currentPageByMark, setCurrentPageByMark }) => {
         }}
       >
         <Pagination
-          currentPageByMark={currentPageByMark}
-          setCurrentPageByMark={setCurrentPageByMark}
-          byMark
+          currentPageByHotel={currentPageByHotel}
+          setCurrentPageByHotel={setCurrentPageByHotel}
+          byHotel
         />
       </div>
     </div>
   );
 };
 
-export default ByMark;
+export default ByHotel;

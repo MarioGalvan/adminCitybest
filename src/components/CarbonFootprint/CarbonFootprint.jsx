@@ -6,9 +6,14 @@ import { COLORPRIMARY } from "../../Hooks/constants";
 import AllCountries from "./allCountries/AllCountries";
 import ByCountriesOne from "./byCountries/ByCountriesOne";
 import ByVehicle from "./byVehicle/ByVehicle";
-import ByMarkOne from "./byMark/ByMarkOne";
+import ByMark from "./byMark/ByMark";
+import ByHotel from "./byHotel/ByHotel";
 import Pagination from "./pagination/PaginationComponent";
 import SelectPeriod from "./SelectPeriod";
+import ModalResumeByCountries from './byCountries/ModalResume';
+import ModalResumeByVehicle from './byVehicle/ModalResume';
+import ModalResumeByMark from './byMark/ModalResume';
+import ModalResumeByHotel from './byHotel/ModalResume';
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -16,6 +21,8 @@ const { Title } = Typography;
 const CarbonFootprint = () => {
   const [currentPageByCountry, setCurrentPageByCountry] = useState(1);
   const [currentPageByVehicle, setCurrentPageByVehicle] = useState(1);
+  const [currentPageByMark, setCurrentPageByMark] = useState(1);
+  const [currentPageByHotel, setCurrentPageByHotel] = useState(1);
 
   return (
     <div className={styles.containerCarboonFootprint}>
@@ -69,14 +76,14 @@ const CarbonFootprint = () => {
             <ByCountriesOne country="Peru" color="lightgray" />
           ) : currentPageByCountry === 6 ? (
             <ByCountriesOne country="Uruguay" color="lightblue" />
-          ) 
-          : null}
+          ) : null}
           <div className={styles.pagination}>
             <Pagination
               setCurrentPageByCountry={setCurrentPageByCountry}
               byCountry
             />
           </div>
+          <ModalResumeByCountries />
         </TabPane>
         <TabPane
           tab={
@@ -88,9 +95,11 @@ const CarbonFootprint = () => {
           key="3"
         >
           {currentPageByVehicle === 1 ? (
-            <ByVehicle vehicle="Gas" color="rgba(0, 255, 128, 0.7)" />
+            <ByVehicle vehicle="Eléctrico" color="rgba(0, 255, 128, 0.7)" />
           ) : currentPageByVehicle === 2 ? (
             <ByVehicle vehicle="Híbrido" color="rgba(0, 255, 255, 0.7)" />
+          ) : currentPageByVehicle === 3 ? (
+            <ByVehicle vehicle="Gas" color="rgba(140, 150, 20, 0.7)" />
           ) : null}
           <div className={styles.pagination}>
             <Pagination
@@ -98,6 +107,7 @@ const CarbonFootprint = () => {
               byVehicle
             />
           </div>
+          <ModalResumeByVehicle />
         </TabPane>
         <TabPane
           tab={
@@ -108,25 +118,26 @@ const CarbonFootprint = () => {
           }
           key="4"
         >
-          <div
-            style={{
-              width: "40%",
-              margin: "0px auto",
-              backgroundColor: "rgba(235, 235, 235, 1)",
-              borderRadius: "5px",
-            }}
-          >
-            {/* <ByMarkOne /> */}
-          </div>
-          <div
-            style={{
-              margin: "0px auto",
-              width: "fit-content",
-              marginTop: "1rem",
-            }}
-          >
-            <Pagination />
-          </div>
+          <ByMark
+            currentPageByMark={currentPageByMark}
+            setCurrentPageByMark={setCurrentPageByMark}
+          />
+          <ModalResumeByMark />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <DoubleRightOutlined />
+              Por hoteles
+            </span>
+          }
+          key="5"
+        >
+          <ByHotel
+            currentPageByHotel={currentPageByHotel}
+            setCurrentPageByHotel={setCurrentPageByHotel}
+          />
+          <ModalResumeByHotel />
         </TabPane>
       </Tabs>
     </div>

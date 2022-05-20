@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "PT Sans", "Arial";
+}
+
 body {
   padding: 0 0 30px 0;
   background-color: #fff;
@@ -3132,7 +3138,7 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
 }
 /* Fin Sinner CityBest */
 
-.ant-select-selector {
+.styles_containerCarboonFootprint__1-Ycq .ant-select-selector {
   border: 1px solid #441a7b !important;
   background-color: #441a7b !important;
   color: white !important;
@@ -3140,10 +3146,63 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   text-align: center !important;
 }
 
-.ant-select-arrow {
+.styles_containerCarboonFootprint__1-Ycq .ant-select-arrow .anticon svg {
   color: white !important;
 }
 
-.ant-select-selector:hover {
+.styles_containerCarboonFootprint__1-Ycq .ant-select-selector {
+  background-color: #441a7b !important;
+}
+
+.styles_containerCarboonFootprint__1-Ycq .ant-select-selector:hover {
   box-shadow: none !important;
 }
+
+/* Pagination: cuadro para salto de pagina */
+.styles_containerCarboonFootprint__1-Ycq
+  .ant-pagination-options-quick-jumper
+  input {
+  /* border: 1px solid #441a7b !important; */
+  /* background-color: #441a7b !important;
+  color: #fff; */
+  text-align: center;
+  /* border-radius: 12px !important; */
+}
+
+.styles_containerCarboonFootprint__1-Ycq
+  .ant-pagination-options-quick-jumper
+  input:hover,
+.styles_containerCarboonFootprint__1-Ycq
+  .ant-pagination-options-quick-jumper
+  input:focus,
+.styles_containerCarboonFootprint__1-Ycq
+  .ant-pagination-options-quick-jumper
+  input:select {
+  border: 1px solid #441a7b !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Button primary */
+.styles_containerCarboonFootprint__1-Ycq .ant-btn {
+  background-color: #441a7b !important;
+  border: 1px solid #441a7b !important;
+}
+
+/* Button close modal */
+.ant-modal-close-x {
+  /* .styles_containerCarboonFootprint__1-Ycq .anticon-close,
+.styles_containerCarboonFootprint__1-Ycq .ant-modal-close-icon{ */
+  color: black !important;
+}
+
+/* .styles_containerCarboonFootprint__1-Ycq .ant-btn-primary {
+  background-color: red !important;
+} */
+
+.ant-modal-footer .ant-btn {
+  background-color: #441a7b !important;
+  border: 1px solid #441a7b !important;
+  color: white !important;
+}
+

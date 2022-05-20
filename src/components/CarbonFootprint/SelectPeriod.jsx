@@ -21,8 +21,6 @@ const SelectPeriod = () => {
           style={{
             marginTop: "6px",
             marginRight: "0.2rem",
-            // fontStyle: "italic",
-            textDecoration: "underline",
           }}
         >
           Período:
