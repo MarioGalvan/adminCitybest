@@ -76,6 +76,39 @@ const ByVehicle = ({ vehicle, color }) => {
   const { countryByVehicle } = useSelector((state) => state["carbonFootPrint"]);
   let colorByCountry;
 
+  let { period } = useSelector((state) => state["carbonFootPrint"]);
+  let labels = [];
+
+  let arreglo = [];
+
+  for (let i = 1; i < 366; i++) {
+    arreglo.push(i);
+  }
+
+  labels =
+    period === "diario"
+      ? arreglo
+      : period === "mensual"
+      ? [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
+        ]
+      : period === "trimestral"
+      ? ["Enero", "Marzo", "Junio", '"Septiembre', "Diciembre"]
+      : period === "anual"
+      ? [new Date().getFullYear() - 1, new Date().getFullYear()]
+      : null;
+      
   // useEffect(() => {
   //   colorByCountry =
   //     countryByVehicle === "Argentina"
