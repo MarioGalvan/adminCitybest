@@ -23,11 +23,12 @@ const Hibrido = () => {
           display: "flex",
           flexFlow: "row wrap",
           justifyContent: "center",
+          alignItems: 'center'
         }}
       >
         <FaCar
           style={{
-            fontSize: "2rem",
+            fontSize: "1.7rem",
             marginRight: "8px",
             color: `${COLORPRIMARY}`,
           }}
@@ -43,20 +44,19 @@ const Hibrido = () => {
       </div>
       <div>
         <p
-          className={styles.item}
           style={{
             display: "flex",
             fleFlow: "row wrap",
             alignItems: "center",
             margin: "0px auto",
             width: "fit-content",
+            alignItems: 'center'
           }}
         >
           <VscDebugBreakpointLog />
           <span>100t = 100km</span>
         </p>
         <p
-          className={styles.item}
           style={{
             display: "flex",
             fleFlow: "row wrap",

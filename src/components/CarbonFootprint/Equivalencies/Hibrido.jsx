@@ -22,11 +22,12 @@ const Hibrido = () => {
           display: "flex",
           flexFlow: "row wrap",
           justifyContent: "center",
+          alignItems: 'center'
         }}
       >
         <IoIosCar
           style={{
-            fontSize: "2rem",
+            fontSize: "2.1rem",
             marginRight: "8px",
             color: `${COLORPRIMARY}`,
           }}
@@ -42,7 +43,6 @@ const Hibrido = () => {
       </div>
       <div>
         <p
-          className={styles.item}
           style={{
             display: "flex",
             fleFlow: "row wrap",
@@ -55,7 +55,6 @@ const Hibrido = () => {
           <span>100t = 100km</span>
         </p>
         <p
-          className={styles.item}
           style={{
             display: "flex",
             fleFlow: "row wrap",

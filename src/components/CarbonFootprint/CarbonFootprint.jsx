@@ -54,7 +54,7 @@ const CarbonFootprint = () => {
           alignItems: "center",
         }}
       >
-        <Equivalencies />
+        {/* <Equivalencies /> */}
         <SelectPeriod />
       </div>
       <Tabs defaultActiveKey="1" style={{marginTop: '0.8rem'}}>
