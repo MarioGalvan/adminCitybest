@@ -16,6 +16,10 @@ import { Marcas } from "./components/Marcas/Marcas";
 import { Drivers } from "./components/Drivers/Drivers";
 import Statistics from "./components/Statistics";
 import CarbonFootprint from "./components/CarbonFootprint/CarbonFootprint";
+import Roles from "./components/Roles";
+import NewRol from "./components/Roles/NewRol";
+import Account from "./components/Cuentas";
+import NewAccount from "./components/Cuentas/NewAccount";
 
 function App() {
   return (
@@ -28,8 +32,10 @@ function App() {
           <Main>
             <ProtectedRoute exact path="/Dashboard" component={Home} />
             <ProtectedRoute exact path="/" component={Home} />
-            <ProtectedRoute exact path="/Cuentas" component={Home} />
-            <ProtectedRoute exact path="/Roles" component={Home} />
+            <ProtectedRoute exact path="/Cuentas" component={Account} />
+            <ProtectedRoute exact path="/Cuentas/Nueva_Cuenta" component={NewAccount} />
+            <ProtectedRoute exact path="/Roles" component={Roles} />
+            <ProtectedRoute exact path="/Roles/Nuevo_Rol" component={NewRol} />
             <ProtectedRoute exact path="/Marcas" component={Marcas} />
             <ProtectedRoute exact path="/Aseguradoras" component={Home} />
             <ProtectedRoute

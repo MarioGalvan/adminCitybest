@@ -1,0 +1,20 @@
+.containerRoles {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 2px !important;
+  height: 450px;
+}
+
+.containerRoles tr td {
+    cursor: pointer !important;
+}
+
+.containerRoles .buttonNewRol {
+    background-color: #441a7b !important;
+    border: 1px solid #441a7b !important;
+    color: white !important;
+}
+
+.containerRoles .buttonNewRol:hover {
+    border: 1px solid #441a7b !important;
+    /* outline: none !important; */
+}

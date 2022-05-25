@@ -13,6 +13,7 @@ export const useMenuGeneral = () => {
     } else {
       setpagerender(page);
     }
+    console.log(page);
   }, [page]);
   return MenuLinks.map((item) => {
     return (
@@ -23,17 +24,17 @@ export const useMenuGeneral = () => {
             style={{
               background:
                 pagerender === item.name ||
-                (item.name === "Cuentas Admin" && pagerender === "Cuentas")
+                (item.name === "Cuentas Admin" && pagerender === "Cuentas") || (item.name === "Roles" && pagerender === "Roles/Nuevo_Rol")
                   ? "#441a7b"
                   : "",
               color:
                 pagerender === item.name ||
-                (item.name === "Cuentas Admin" && pagerender === "Cuentas")
+                (item.name === "Cuentas Admin" && pagerender === "Cuentas") || (item.name === "Roles" && pagerender === "Roles/Nuevo_Rol")
                   ? "#fff"
                   : "",
               opacity:
                 pagerender === item.name ||
-                (item.name === "Cuentas Admin" && pagerender === "Cuentas")
+                (item.name === "Cuentas Admin" && pagerender === "Cuentas") || (item.name === "Roles" && pagerender === "Roles/Nuevo_Rol")
                   ? 0.8
                   : 1,
             }}

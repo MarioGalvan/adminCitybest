@@ -49,9 +49,9 @@ import ByCountries from "../components/CarbonFootprint/byCountries/ByCountries";
 
 function Home() {
   const { Title, Text } = Typography;
-  const [ carBrands, setcarBrands ] = useState([]);
-  const [carYears, setcarYears] = useState([])
-  const [ counts, setcounts ] = useState([
+  const [carBrands, setcarBrands] = useState([]);
+  const [carYears, setcarYears] = useState([]);
+  const [counts, setcounts] = useState([
     {
       today: "Total conductores LATAM",
       title: `${0}`,
@@ -74,20 +74,21 @@ function Home() {
       bnb: "redtext",
     },
     {
-      today: `Nuevos Conductores ${MonthsSpanish[ new Date().getMonth().toLocaleString() ]}`,
+      today: `Nuevos Conductores ${
+        MonthsSpanish[new Date().getMonth().toLocaleString()]
+      }`,
       title: `${0}`,
       persent: "",
       icon: <TrophyOutlined />,
       bnb: "bnb2",
     },
-  ])
+  ]);
   useEffect(() => {
-
-    UseApiService('get', {}, '/stats/basic/BASIC_STATS').then((res) => {
-      console.log("🚀 ~ file: Home.js ~ line 55 ~ useApiService ~ res", res)
+    UseApiService("get", {}, "/stats/basic/BASIC_STATS").then((res) => {
+      console.log("🚀 ~ file: Home.js ~ line 55 ~ useApiService ~ res", res);
       let { drivers, passengers, carBrands, carYears } = res.data.stats;
-      setcarBrands(carBrands)
-      setcarYears(carYears)
+      setcarBrands(carBrands);
+      setcarYears(carYears);
       setcounts([
         {
           today: "Total conductores LATAM",
@@ -111,15 +112,17 @@ function Home() {
           bnb: "redtext",
         },
         {
-          today: `Nuevos Conductores ${MonthsSpanish[ new Date().getMonth().toLocaleString() ]}`,
+          today: `Nuevos Conductores ${
+            MonthsSpanish[new Date().getMonth().toLocaleString()]
+          }`,
           title: `${passengers?.currentMonthRegistrations ?? 0}`,
           persent: "",
           icon: <TrophyOutlined />,
           bnb: "bnb2",
         },
-      ])
-    })
-  }, [])
+      ]);
+    });
+  }, []);
 
   // const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
@@ -298,7 +301,7 @@ function Home() {
   return (
     <>
       <div className="layout-content">
-        <Row className="rowgap-vbox" gutter={[ 24, 0 ]}>
+        <Row className="rowgap-vbox" gutter={[24, 0]}>
           {counts.map((c, index) => (
             <Col
               key={index}
@@ -311,7 +314,7 @@ function Home() {
             >
               <Card bordered={true} className="criclebox ">
                 <div className="number">
-                  <Row align="middle" gutter={[ 24, 0 ]}>
+                  <Row align="middle" gutter={[24, 0]}>
                     <Col xs={18}>
                       <span>{c.today}</span>
                       <Title level={3}>
@@ -328,7 +331,7 @@ function Home() {
           ))}
         </Row>
 
-        <Row gutter={[ 24, 0 ]} justify='center'>
+        {/* <Row gutter={[ 24, 0 ]} justify='center'>
           <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
             <Card
               bordered hoverable className="criclebox h-full"
@@ -340,14 +343,14 @@ function Home() {
                   <BarChartOutlined /> Distribución de vehículos por marca
                 </span>
               }>
-              {/* <Echart /> */}
+              <Echart />
               <DoughnutChart datachart={UseTypeDataChart('car-brands', carBrands)} type="car-brands" />
             </Card>
           </Col>
           <Col xs={10} sm={10} md={12} lg={12} xl={10} className="mb-24">
-            {/* <Card bordered={false} className="criclebox h-full">
+            <Card bordered={false} className="criclebox h-full">
               <LineChart />
-            </Card> */}
+            </Card>
             <Card
               bordered hoverable className="criclebox h-full"
               title={
@@ -358,11 +361,11 @@ function Home() {
                  <BarChartOutlined /> Distribución de vehículos por año
                 </span>
               }>
-              {/* <LineChart /> */}
+              <LineChart />
               <DoughnutChart datachart={UseTypeDataChart('car-years', carYears)} type="car-brands" />
             </Card>
           </Col>
-        </Row>
+        </Row> */}
 
         {/* <Row gutter={[ 24, 0 ]}>
           <Col xs={24} sm={24} md={12} lg={12} xl={16} className="mb-24">

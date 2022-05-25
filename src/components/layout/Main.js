@@ -22,6 +22,7 @@ function Main({ children }) {
 
   let { pathname } = useLocation();
   pathname = pathname.replace("/", "");
+  
 
   // useEffect(() => {
   //   if (pathname === "rtl") {

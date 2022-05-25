@@ -1,0 +1,70 @@
+.containerEditRol {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1rem;
+  border-radius: 2px !important;
+}
+
+.containerEditRol .buttonBack {
+  background-color: #441a7b !important;
+  border: 1px solid #441a7b !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.containerEditRol .buttonBack:hover {
+  border: 1px solid #441a7b !important;
+  /* outline: none !important; */
+}
+
+.containerEditRol .labelRol {
+  /* border: 1px solid black !important; */
+  color: black !important;
+}
+
+.containerEditRol .labelRol label {
+  margin-top: 5px !important;
+}
+
+.containerEditRol .inputNewRol {
+  color: black !important;
+  /* border: 1px solid pink !important; */
+  padding: 0px !important;
+  padding-left: 8px !important;
+}
+
+.containerEditRol .buttonSave {
+  background-color: #441a7b !important;
+  border: 1px solid #441a7b !important;
+  cursor: pointer !important;
+  margin-top: 3rem !important;
+}
+
+.form button {
+  width: 7rem !important;
+  /* margin-right: 8px;
+    margin-left: 8px; */
+}
+
+.form .divButtons {
+  width: 60% !important;
+  display: flex !important;
+  margin: 0px auto !important;
+  flex-flow: row wrap !important;
+  justify-content: space-evenly;
+}
+
+.containerModal {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.containerModal .sectionParameters {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  justify-content: space-between !important;
+  height: 50vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
