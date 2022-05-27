@@ -3,7 +3,6 @@ import { Typography, Select, Form, Input, Button, Space } from "antd";
 import { COLORPRIMARY } from "../../../Hooks/constants";
 import { useHistory } from "react-router-dom";
 import { MdPersonAddAlt1 } from "react-icons/md";
-import { RiUserSettingsLine } from "react-icons/ri";
 import { UserOutlined, MailOutlined, LockOutlined } from "@ant-design/icons";
 import { formItemLayout } from "./layoutForm";
 import styles from "./styles.module.css";
@@ -22,7 +21,7 @@ const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-const NewAccount = () => {
+const NewAccount = ({ backEdit }) => {
   const history = useHistory();
 
   const onFinish = (values) => {
@@ -34,7 +33,7 @@ const NewAccount = () => {
   };
 
   const back = () => {
-    history.push("/Cuentas");
+    backEdit();
   };
 
   const { Option } = Select;
@@ -77,7 +76,7 @@ const NewAccount = () => {
               marginLeft: "8px",
             }}
           >
-            Complete el formulario para agregar un nuevo administrador/a
+            Complete el formulario para editar este administrador/a (Super Admin)
           </Title>
         </div>
         <Button className={styles.buttonPurple} onClick={back}>
@@ -244,12 +243,6 @@ const NewAccount = () => {
             defaultValue="-"
             style={{ width: 180 }}
             onChange={handleChange}
-            prefix={
-              <RiUserSettingsLine
-                style={{ color: "rgba(68, 26, 123, 1)" }}
-                className={`site-form-item-icon ${styles.iconClose}`}
-              />
-            }
           >
             <Option value="Super Admin">Super Admin</Option>
             <Option value="Supervisor1">Supervisor1</Option>
@@ -268,7 +261,7 @@ const NewAccount = () => {
             htmlType="submit"
             className={styles.buttonPurple}
           >
-            Agregar
+            Editar
           </Button>
         </Form.Item>
       </Form>

@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import carbonFootPrintReducer from "./reducer";
+import carbonFootPrintReducer from "./carbonFootPrintReducer";
+import rolesReducer from "./rolesReducer";
 import thunkMiddleware from "redux-thunk";
 
 const reducers = combineReducers({
   carbonFootPrint: carbonFootPrintReducer,
+  roles: rolesReducer
 });
 
 const composeEnhancers =

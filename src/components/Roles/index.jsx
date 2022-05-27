@@ -1,5 +1,5 @@
-import { Button, Space, Table, Typography, Tabs } from "antd";
-import { useState } from "react";
+import { Button, Space, Table, Typography, Tabs, Switch } from "antd";
+import { useEffect, useState } from "react";
 import { IoIosPeople } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { COLORPRIMARY } from "../../Hooks/constants";
@@ -13,35 +13,11 @@ import PermissionsMarcas from "./PermissionsInfo/PermissionsMarcas";
 import PermissionsAdministracion from "./PermissionsInfo/PermissionsAdministracion";
 import PermissionsHuellasDeCarbono from "./PermissionsInfo/PermissionsHuellasDeCarbono";
 import EditRol from "./EditRol";
+import axios from "axios";
+import { OrderedListOutlined } from "@ant-design/icons";
+import PreloaderApp from '../Loader';
 
 const { Title } = Typography;
-
-const data = [
-  {
-    key: "1",
-    name: "Super Admin",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Novotel Las Condes",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Mercure Concepción",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Novotel Providencia",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
 
 const { TabPane } = Tabs;
 
@@ -50,6 +26,21 @@ const Roles = () => {
   const [sortedInfo, setSortedInfo] = useState({});
   const [viewRol, setViewRol] = useState(false);
   const [editP, setEditP] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/admin-roles`)
+      .then((response) => {
+        let finalData = response.data
+          .filter((rol) => rol.name)
+          .map((role) => {
+            return { id: role._id, name: role.name };
+          });
+        setData(finalData);
+      })
+      .catch((error) => console.log(error));
+  }, [data]);
 
   const onChange = (key) => {
     console.log(key);
@@ -63,23 +54,14 @@ const Roles = () => {
     setSortedInfo(sorter);
   };
 
-  const clearFilters = () => {
-    setFilteredInfo({});
-  };
-
-  const clearAll = () => {
-    setFilteredInfo({});
-    setSortedInfo({});
-  };
-
-  const setAgeSort = () => {
-    setSortedInfo({
-      order: "descend",
-      columnKey: "age",
-    });
-  };
-
-  const detailRol = (e) => {
+  const detailRol = async (e) => {
+    let id = data.find((item) => item.name === e.target.innerText).id;
+    await axios
+      .get(`${process.env.REACT_APP_BACKEND}/admin-roles/${id}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
     setViewRol(true);
   };
 
@@ -106,50 +88,12 @@ const Roles = () => {
       title: "Nombre",
       dataIndex: "name",
       key: "name",
-      //   filters: [
-      //     {
-      //       text: "Joe",
-      //       value: "Joe",
-      //     },
-      //     {
-      //       text: "Jim",
-      //       value: "Jim",
-      //     },
-      //   ],
       filteredValue: filteredInfo.name || null,
       onFilter: (value, record) => record.name.includes(value),
       sorter: (a, b) => a.name.length - b.name.length,
       sortOrder: sortedInfo.columnKey === "name" ? sortedInfo.order : null,
       ellipsis: true,
     },
-    // {
-    //   title: "Age",
-    //   dataIndex: "age",
-    //   key: "age",
-    //   sorter: (a, b) => a.age - b.age,
-    //   sortOrder: sortedInfo.columnKey === "age" ? sortedInfo.order : null,
-    //   ellipsis: true,
-    // },
-    // {
-    //   title: "Address",
-    //   dataIndex: "address",
-    //   key: "address",
-    //   filters: [
-    //     {
-    //       text: "London",
-    //       value: "London",
-    //     },
-    //     {
-    //       text: "New York",
-    //       value: "New York",
-    //     },
-    //   ],
-    //   filteredValue: filteredInfo.address || null,
-    //   onFilter: (value, record) => record.address.includes(value),
-    //   sorter: (a, b) => a.address.length - b.address.length,
-    //   sortOrder: sortedInfo.columnKey === "address" ? sortedInfo.order : null,
-    //   ellipsis: true,
-    // },
   ];
 
   return (
@@ -196,17 +140,20 @@ const Roles = () => {
             <Button className={styles.buttonNewRol} onClick={goToNewRol}>
               Nuevo rol
             </Button>
-            {/* <Button onClick={setAgeSort}>Sort age</Button>
-        <Button onClick={clearFilters}>Clear filters</Button>
-        <Button onClick={clearAll}>Clear filters and sorters</Button> */}
           </Space>
           <Table
+            locale={{
+              triggerDesc: "Click para orden descendente",
+              triggerAsc: "Click para orden ascendente",
+              cancelSort: "Click para cancelar orden",
+              emptyText: <PreloaderApp />,
+            }}
             columns={columns}
             dataSource={data}
             onChange={handleChange}
             onRow={(record, rowIndex) => {
               return {
-                onClick: (event) => {
+                onClick: (event, record, rowIndex) => {
                   detailRol(event);
                 }, // click row
                 // onDoubleClick: (event) => {}, // double click row

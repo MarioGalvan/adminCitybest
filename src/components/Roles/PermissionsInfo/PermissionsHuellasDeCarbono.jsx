@@ -2,24 +2,18 @@ import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import styles from "./styles.module.css";
 
-const PermissionsPasajeros = () => {
+const PermissionsHuellasDeCarbono = () => {
   return (
-    <div style={{ margin: "1rem" }}>
+    <div className={styles.containerPermissions}>
       <div
         style={{
           display: "flex",
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver estadísticas:</p>{" "}
         <ImCross
           style={{
@@ -35,4 +29,4 @@ const PermissionsPasajeros = () => {
   );
 };
 
-export default PermissionsPasajeros;
+export default PermissionsHuellasDeCarbono;

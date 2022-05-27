@@ -2,24 +2,18 @@ import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import styles from "./styles.module.css";
 
 const PermissionsPasajeros = () => {
   return (
-    <div style={{ margin: "1rem" }}>
+    <div className={styles.containerPermissions}>
       <div
         style={{
           display: "flex",
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver conductores:</p>{" "}
         <ImCross
           style={{
@@ -37,14 +31,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar conductores:</p>{" "}
         <TiTick
           style={{
@@ -61,14 +48,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Aprobar/rechazar documentos:</p>{" "}
         <ImCross
           style={{
@@ -86,14 +66,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Bloquear conductores:</p>{" "}
         <TiTick
           style={{
@@ -110,14 +83,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar conductores:</p>{" "}
         <ImCross
           style={{
@@ -135,14 +101,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Exportar conductores:</p>{" "}
         <ImCross
           style={{

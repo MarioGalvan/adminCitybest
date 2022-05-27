@@ -1,7 +1,7 @@
 import React from "react";
 import { Select, Typography, Space } from "antd";
 import { useDispatch } from "react-redux";
-import { setCountryByHotel } from "../../../globalState/actions";
+import { setCountryByHotel } from "../../../globalState/carbonFootPrintActions";
 import styles from "./styles.module.css";
 import { COLORPRIMARY } from "../../../Hooks/constants";
 

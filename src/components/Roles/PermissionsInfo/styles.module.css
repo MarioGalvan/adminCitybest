@@ -1,0 +1,15 @@
+.containerPermissions {
+  border: 1px solid #441a7b;
+  border-radius: 12px;
+  margin: 1rem;
+  padding: 0.8rem 1rem 0rem 1rem;
+  width: fit-content;
+}
+
+.vsIcon {
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-top: 5px;
+  margin-right: 3px;
+  color: #441a7b;
+}

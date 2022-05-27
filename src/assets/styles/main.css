@@ -3112,7 +3112,6 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   background-size: 60px;
   width: 100px;
   height: 100px;
-  margin-top: 2rem;
 }
 
 .preloader2 {
@@ -3125,6 +3124,7 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   animation: spin 1s ease-in-out infinite;
   position: relative;
   margin: auto;
+  margin-bottom: 2rem;
   top: -18%;
 }
 
@@ -3218,5 +3218,23 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
 
 /* Modal equivalencies */
 .ant-modal-body {
-  padding-top: 2.3rem !important;  
+  padding-top: 2.3rem !important;
+}
+
+/* Eliminar foco dle boton de sweetalert al renderizar al modal */
+.swal2-popup .swal2-styled:focus {
+  box-shadow: none !important;
+}
+
+.ant-input-password-icon {
+  color: #441a7b !important;
+  margin: 0px !important;
+}
+
+.ant-btn-default {
+  color: white !important;
+}
+
+.ant-table-column-sorter {
+  color: #441a7b !important;
 }

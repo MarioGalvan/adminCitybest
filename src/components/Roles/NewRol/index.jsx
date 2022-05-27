@@ -1,5 +1,14 @@
-import React, { useState } from "react";
-import { Tabs, Typography, Space, Button, Input, Form, Divider } from "antd";
+import React, { useState, useEffect } from "react";
+import {
+  Tabs,
+  Typography,
+  Space,
+  Button,
+  Input,
+  Form,
+  Divider,
+  Switch,
+} from "antd";
 import { MdPersonAddAlt1 } from "react-icons/md";
 import { COLORPRIMARY } from "../../../Hooks/constants";
 import { useHistory } from "react-router-dom";
@@ -13,6 +22,11 @@ import CheckMarcas from "./Checkbox/CheckMarcas";
 import CheckAdministracion from "./Checkbox/CheckAdministracion";
 import CheckHuellasDeCarbono from "./Checkbox/CheckHuellasDeCarbono";
 import ModalResume from "./ModalResume";
+import Swal from "sweetalert2";
+import { saveRol, alertMessage } from "./alerts";
+import Fade from "react-reveal/Fade";
+import axios from "axios";
+import { notify } from "./toast";
 
 const { TabPane } = Tabs;
 
@@ -33,13 +47,83 @@ const onFinishFailed = (errorInfo) => {
 const NewRol = () => {
   const history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [data, setData] = useState([]);
+  const [name, setName] = useState("");
+  const [passengers, setPassengers] = useState([]);
+  const [drivers, setDrivers] = useState([]);
+  const [statistics, setStatistics] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [administration, setAdministration] = useState([]);
+  const [fingerprint, setFingerprint] = useState([]);
+  const [switchOn, setSwitchOn] = useState(false);
+
+  useEffect(() => {
+    setData([
+      ...passengers,
+      ...drivers,
+      ...statistics,
+      ...companies,
+      ...brands,
+      ...administration,
+      ...fingerprint,
+    ]);
+  }, [
+    name,
+    passengers,
+    drivers,
+    statistics,
+    companies,
+    brands,
+    administration,
+    fingerprint,
+  ]);
+
+  useEffect(() => {
+    console.log(data, "data");
+  }, [data]);
+
+  useEffect(() => {
+    if (switchOn) notify("success", "Se activó el 100% de los permisos.");
+  }, [switchOn]);
 
   const resume = () => {
     setIsModalVisible(true);
   };
 
+  const onSwitchChange = (checked) => {
+    setSwitchOn(checked);
+  };
+
   const back = () => {
     history.push("/Roles");
+  };
+
+  const createRol = () => {
+    let finalData = {};
+
+    if (!name)
+      return alertMessage(
+        "Nombre del rol",
+        "Por favor, completa el nombre del rol que deseas agregar",
+        "warning"
+      );
+
+    console.log(data, "data");
+    if (data.length === 0 || data[0] === "")
+      return alertMessage(
+        "Permisos",
+        "Por favor, selecciona al menos un permiso",
+        "warning"
+      );
+
+    finalData = {
+      isSuperAdmin: false,
+      name,
+      permissions: data,
+    };
+
+    return saveRol(name, finalData, history);
   };
 
   return (
@@ -115,34 +199,72 @@ const NewRol = () => {
             />
           }
           className={styles.labelRol}
-          //   hasFeedback
         >
-          <Input placeholder="Nombre del rol" className={styles.inputNewRol} />
+          <Input
+            placeholder="Nombre del rol"
+            className={styles.inputNewRol}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </Form.Item>
-
-        <Tabs defaultActiveKey="1" onChange={onChange}>
-          <TabPane tab="Pasajeros" key="1">
-            <CheckPasajeros />
-          </TabPane>
-          <TabPane tab="Conductores" key="2">
-            <CheckConductores />
-          </TabPane>
-          <TabPane tab="Estadísticas" key="3">
-            <CheckEstadisticas />
-          </TabPane>
-          <TabPane tab="Compañías aseguradoras" key="4">
-            <CheckCompanias />
-          </TabPane>
-          <TabPane tab="Marca de vehículos" key="5">
-            <CheckMarcas />
-          </TabPane>
-          <TabPane tab="Administración" key="6">
-            <CheckAdministracion />
-          </TabPane>
-          <TabPane tab="Huellas de Carbono" key="7">
-            <CheckHuellasDeCarbono />
-          </TabPane>
-        </Tabs>
+        <Form.Item span={2}>
+          <Space direction="horizontal">
+            <Title
+              level={5}
+              style={{ margin: "0px", color: `${COLORPRIMARY}` }}
+            >
+              Super Admin
+            </Title>
+            <div
+              style={{ width: "12px", display: "flex", flexFlow: "row wrap" }}
+            >
+              <Switch
+                defaultChecked={false}
+                onChange={onSwitchChange}
+                className={styles.switch}
+                style={
+                  switchOn
+                    ? {
+                        color: `${COLORPRIMARY}`,
+                        backgroundColor: `${COLORPRIMARY}`,
+                      }
+                    : null
+                }
+              />
+            </div>
+          </Space>
+        </Form.Item>
+        {!switchOn && (
+          <Fade>
+            <Tabs
+              defaultActiveKey="1"
+              onChange={onChange}
+              style={{ minHeight: "250px" }}
+            >
+              <TabPane tab="Pasajeros" key="1">
+                <CheckPasajeros setPassengers={setPassengers} />
+              </TabPane>
+              <TabPane tab="Conductores" key="2">
+                <CheckConductores setDrivers={setDrivers} />
+              </TabPane>
+              <TabPane tab="Estadísticas" key="3">
+                <CheckEstadisticas setStatistics={setStatistics} />
+              </TabPane>
+              <TabPane tab="Compañías aseguradoras" key="4">
+                <CheckCompanias setCompanies={setCompanies} />
+              </TabPane>
+              <TabPane tab="Marca de vehículos" key="5">
+                <CheckMarcas setBrands={setBrands} />
+              </TabPane>
+              <TabPane tab="Administración" key="6">
+                <CheckAdministracion setAdministration={setAdministration} />
+              </TabPane>
+              <TabPane tab="Huellas de Carbono" key="7">
+                <CheckHuellasDeCarbono setFingerprint={setFingerprint} />
+              </TabPane>
+            </Tabs>
+          </Fade>
+        )}
         <Divider />
         <Form.Item
           wrapperCol={{
@@ -160,7 +282,8 @@ const NewRol = () => {
             </Button>
             <Button
               type="primary"
-              htmlType="submit"
+              // htmlType="submit"
+              onClick={createRol}
               className={styles.buttonSave}
             >
               Guardar

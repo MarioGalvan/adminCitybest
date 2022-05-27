@@ -6,7 +6,7 @@ const CheckboxGroup = Checkbox.Group;
 const plainOptions = ["Ver estadísticas"];
 const defaultCheckedList = [""];
 
-const App = () => {
+const Estadisticas = ({ setStatistics }) => {
   const [checkedList, setCheckedList] = useState(defaultCheckedList);
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
@@ -15,17 +15,25 @@ const App = () => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);
     setCheckAll(list.length === plainOptions.length);
-  };
 
-  useEffect(() => {
-    console.log(checkedList);
-  }, [checkedList]);
+    let data = [...list];
+
+    if (data.indexOf("Ver estadísticas") !== -1)
+      data[data.indexOf("Ver estadísticas")] = "SEE_STATS";
+
+    setStatistics(data);
+  };
 
   const onCheckAllChange = (e) => {
     setCheckedList(e.target.checked ? plainOptions : []);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
+
+  useEffect(() => {
+    if (checkAll) setStatistics(["SEE_STATS"]);
+    else setStatistics([""]);
+  }, [checkAll]);
 
   return (
     <>
@@ -47,4 +55,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Estadisticas;

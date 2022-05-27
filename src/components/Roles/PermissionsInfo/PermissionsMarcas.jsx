@@ -2,24 +2,18 @@ import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import styles from "./styles.module.css";
 
-const PermissionsPasajeros = () => {
+const PermissionsMarcas = () => {
   return (
-    <div style={{ margin: "1rem" }}>
+    <div className={styles.containerPermissions}>
       <div
         style={{
           display: "flex",
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver marca de vehículos:</p>{" "}
         <ImCross
           style={{
@@ -37,14 +31,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar marca de vehículos:</p>{" "}
         <TiTick
           style={{
@@ -61,14 +48,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear marca de vehículos:</p>{" "}
         <ImCross
           style={{
@@ -86,14 +66,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar marca de vehículos:</p>{" "}
         <TiTick
           style={{
@@ -110,14 +83,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Exportar pasajeros:</p>{" "}
         <ImCross
           style={{
@@ -133,4 +99,4 @@ const PermissionsPasajeros = () => {
   );
 };
 
-export default PermissionsPasajeros;
+export default PermissionsMarcas;

@@ -13,7 +13,7 @@ const plainOptions = [
 ];
 const defaultCheckedList = [""];
 
-const App = () => {
+const Drivers = ({ setDrivers }) => {
   const [checkedList, setCheckedList] = useState(defaultCheckedList);
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
@@ -22,17 +22,44 @@ const App = () => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);
     setCheckAll(list.length === plainOptions.length);
-  };
 
-  useEffect(() => {
-    console.log(checkedList);
-  }, [checkedList]);
+    let data = [...list];
+
+    if (data.indexOf("Ver conductores") !== -1)
+      data[data.indexOf("Ver conductores")] = "LIST_DRIVERS";
+    if (data.indexOf("Editar conductores") !== -1)
+      data[data.indexOf("Editar conductores")] = "EDIT_DRIVERS";
+    if (data.indexOf("Aprobar/rechazar documentos") !== -1)
+      data[data.indexOf("Aprobar/rechazar documentos")] =
+        "CHECK_DRIVER_DOCUMENTS";
+    if (data.indexOf("Bloquear conductores") !== -1)
+      data[data.indexOf("Bloquear conductores")] = "BLOCK_DRIVERS";
+    if (data.indexOf("Eliminar conductores") !== -1)
+      data[data.indexOf("Eliminar conductores")] = "DELETE_DRIVERS";
+    if (data.indexOf("Exportar conductores") !== -1)
+      data[data.indexOf("Exportar conductores")] = "EXPORT_DRIVERS";
+
+    setDrivers(data);
+  };
 
   const onCheckAllChange = (e) => {
     setCheckedList(e.target.checked ? plainOptions : []);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
+
+  useEffect(() => {
+    if (checkAll)
+      setDrivers([
+        "LIST_DRIVERS",
+        "EDIT_DRIVERS",
+        "CHECK_DRIVER_DOCUMENTS",
+        "BLOCK_DRIVERS",
+        "DELETE_DRIVERS",
+        "EXPORT_DRIVERS",
+      ]);
+    else setDrivers([""]);
+  }, [checkAll]);
 
   return (
     <>
@@ -54,4 +81,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Drivers;

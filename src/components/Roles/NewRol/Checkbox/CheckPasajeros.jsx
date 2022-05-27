@@ -12,7 +12,7 @@ const plainOptions = [
 ];
 const defaultCheckedList = [""];
 
-const App = () => {
+const PermissionsPasajeros = ({ setPassengers }) => {
   const [checkedList, setCheckedList] = useState(defaultCheckedList);
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
@@ -21,17 +21,40 @@ const App = () => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);
     setCheckAll(list.length === plainOptions.length);
-  };
 
-  useEffect(() => {
-    console.log(checkedList);
-  }, [checkedList]);
+    let data = [...list];
+
+    if (data.indexOf("Ver pasajeros") !== -1)
+      data[data.indexOf("Ver pasajeros")] = "LIST_PASSENGERS";
+    if (data.indexOf("Editar pasajeros") !== -1)
+      data[data.indexOf("Editar pasajeros")] = "EDIT_PASSENGERS";
+    if (data.indexOf("Bloquear pasajeros") !== -1)
+      data[data.indexOf("Bloquear pasajeros")] = "BLOCK_PASSENGERS";
+    if (data.indexOf("Eliminar pasajeros") !== -1)
+      data[data.indexOf("Eliminar pasajeros")] = "DELETE_PASSENGERS";
+    if (data.indexOf("Exportar pasajeros") !== -1)
+      data[data.indexOf("Exportar pasajeros")] = "EXPORT_PASSENGERS";
+
+    setPassengers(data);
+  };
 
   const onCheckAllChange = (e) => {
     setCheckedList(e.target.checked ? plainOptions : []);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
+
+  useEffect(() => {
+    if (checkAll)
+      setPassengers([
+        "LIST_PASSENGERS",
+        "EDIT_PASSENGERS",
+        "BLOCK_PASSENGERS",
+        "DELETE_PASSENGERS",
+        "EXPORT_PASSENGERS",
+      ]);
+    else setPassengers([""]);
+  }, [checkAll]);
 
   return (
     <>
@@ -53,4 +76,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default PermissionsPasajeros;

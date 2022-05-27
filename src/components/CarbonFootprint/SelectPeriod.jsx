@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Select, Typography, Space } from "antd";
 import { useDispatch } from "react-redux";
-import { setPeriod } from "../../globalState/actions";
+import { setPeriod } from "../../globalState/carbonFootPrintActions";
 import styles from "./styles.module.css";
 
 const SelectPeriod = () => {

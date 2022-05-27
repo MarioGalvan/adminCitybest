@@ -2,24 +2,18 @@ import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import styles from "./styles.module.css";
 
-const PermissionsPasajeros = () => {
+const PermissionsAdministracion = () => {
   return (
-    <div style={{ margin: "1rem" }}>
+    <div className={styles.containerPermissions}>
       <div
         style={{
           display: "flex",
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver cuentas administradoras:</p>{" "}
         <ImCross
           style={{
@@ -37,14 +31,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar cuentas administradoras:</p>{" "}
         <TiTick
           style={{
@@ -61,14 +48,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear cuentas administradoras:</p>{" "}
         <ImCross
           style={{
@@ -86,14 +66,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar cuentas administradoras:</p>{" "}
         <TiTick
           style={{
@@ -110,14 +83,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver roles administrativos:</p>{" "}
         <ImCross
           style={{
@@ -135,14 +101,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar roles administrativos:</p>{" "}
         <ImCross
           style={{
@@ -160,14 +119,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear roles administrativos:</p>{" "}
         <TiTick
           style={{
@@ -184,14 +136,7 @@ const PermissionsPasajeros = () => {
           flexFlow: "row wrap",
         }}
       >
-        <VscDebugBreakpointLog
-          style={{
-            width: "0.8rem",
-            height: "0.8rem",
-            marginTop: "5px",
-            marginRight: "3px",
-          }}
-        />
+        <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar roles administrativos:</p>{" "}
         <ImCross
           style={{
@@ -207,4 +152,4 @@ const PermissionsPasajeros = () => {
   );
 };
 
-export default PermissionsPasajeros;
+export default PermissionsAdministracion;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Select, Typography, Space } from "antd";
 import { useDispatch } from "react-redux";
-import { setCountryByMark } from "../../../globalState/actions";
+import { setCountryByMark } from "../../../globalState/carbonFootPrintActions";
 import styles from "./styles.module.css";
 
 const SelectCountry = () => {
