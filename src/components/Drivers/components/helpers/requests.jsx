@@ -13,8 +13,9 @@ export const confirmDocs = async (
 ) => {
   setModalText("Un momento por favor...");
   setConfirmLoading(true);
+  // .post(`${process.env.REACT_APP_BACKEND}/drivers/approve`, {
   await axios
-    .post(`${process.env.REACT_APP_BACKEND}/drivers/approve`, {
+    .post(`https://citybest.herokuapp.com/admin/drivers/approve`, {
       driverId: id,
       serviceType: option,
     })

@@ -210,7 +210,7 @@ const Roles = () => {
                   marginLeft: "8px",
                 }}
               >
-                Permisos para {currentRol.name}
+                Permisos para "{currentRol.name}"
               </Title>
             </div>
 

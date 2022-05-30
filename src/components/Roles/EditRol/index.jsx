@@ -161,7 +161,7 @@ const EditRol = ({ backEdit, setViewRol, setEditP }) => {
               marginLeft: "8px",
             }}
           >
-            Complete los siguiente campos para editar "Super Admin"
+            Complete los siguiente campos para editar "{currentRol.name}"
           </Title>
         </div>
         <Button className={styles.buttonBack} onClick={backEdit}>

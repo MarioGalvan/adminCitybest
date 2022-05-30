@@ -45,7 +45,7 @@ export const editRol = (
           } else {
             warningRol(
               "Rol existente",
-              "El rol tipeado ya existe. Por favor elija otro."
+              "El rol tipeado ya existe. Por favor elija otro nombre."
             );
           }
         })
