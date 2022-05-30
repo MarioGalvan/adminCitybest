@@ -1,10 +1,11 @@
 import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { dynamicIcons } from "./dynamicIcons";
 
 const PermissionsCompanias = () => {
+  const { currentRol } = useSelector((state) => state["roles"]);
   return (
     <div className={styles.containerPermissions}>
       <div
@@ -15,15 +16,11 @@ const PermissionsCompanias = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver compañías aseguradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "LIST_COMPANY_INSURANCE",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -33,14 +30,11 @@ const PermissionsCompanias = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar compañías aseguradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "EDIT_COMPANY_INSURANCE",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -50,15 +44,11 @@ const PermissionsCompanias = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear compañías aseguradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "CREATE_COMPANY_INSURANCE",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -68,14 +58,11 @@ const PermissionsCompanias = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar compañías aseguradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "DELETE_COMPANY_INSURANCE",
+          currentRol.permissions
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
 import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { dynamicIcons } from "./dynamicIcons";
 
 const PermissionsHuellasDeCarbono = () => {
+  const { currentRol } = useSelector((state) => state["roles"]);
+  
   return (
     <div className={styles.containerPermissions}>
       <div
@@ -15,15 +17,11 @@ const PermissionsHuellasDeCarbono = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver estadísticas:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "SEE_STATS_CARBONFOOTPRINTS",
+          currentRol.permissions
+        )}
       </div>
     </div>
   );

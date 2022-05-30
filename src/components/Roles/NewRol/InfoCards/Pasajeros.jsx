@@ -3,14 +3,16 @@ import { Card } from "antd";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { dynamicIcons } from "../../PermissionsInfo/dynamicIcons";
 
-const Pasajeros = () => {
+const Pasajeros = ({ allEdits }) => {
+  console.log(allEdits, "QUIERO VER");
   return (
     <Card
       title="Pasajeros"
       style={{
         width: 190,
-        height: 320
+        height: 320,
       }}
     >
       <div
@@ -27,16 +29,7 @@ const Pasajeros = () => {
             marginRight: "3px",
           }}
         />
-        <p>Ver pasajeros:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        <p>Ver pasajeros:</p> {dynamicIcons(false, "LIST_PASSENGERS", allEdits)}
       </div>
       <div
         style={{
@@ -53,14 +46,7 @@ const Pasajeros = () => {
           }}
         />
         <p>Editar pasajeros:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "EDIT_PASSENGERS", allEdits)}
       </div>
       <div
         style={{
@@ -77,15 +63,7 @@ const Pasajeros = () => {
           }}
         />
         <p>Bloquear pasajeros:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "BLOCK_PASSENGERS", allEdits)}
       </div>
       <div
         style={{
@@ -102,14 +80,7 @@ const Pasajeros = () => {
           }}
         />
         <p>Eliminar pasajeros:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "DELETE_PASSENGERS", allEdits)}
       </div>
       <div
         style={{
@@ -126,15 +97,7 @@ const Pasajeros = () => {
           }}
         />
         <p>Exportar pasajeros:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "EXPORT_PASSENGERS", allEdits)}
       </div>
     </Card>
   );

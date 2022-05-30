@@ -1,10 +1,9 @@
 import React from "react";
 import { Card } from "antd";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
+import { dynamicIcons } from "../../PermissionsInfo/dynamicIcons";
 
-const Administracion = () => {
+const Administracion = ({ allEdits }) => {
   return (
     <Card
       title="Administracion"
@@ -27,15 +26,7 @@ const Administracion = () => {
           }}
         />
         <p>Ver cuentas administradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "LIST_ADMINS", allEdits)}
       </div>
       <div
         style={{
@@ -52,14 +43,7 @@ const Administracion = () => {
           }}
         />
         <p>Editar cuentas administradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "EDIT_ADMINS", allEdits)}
       </div>
       <div
         style={{
@@ -76,15 +60,7 @@ const Administracion = () => {
           }}
         />
         <p>Crear cuentas administradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "CREATE_ADMINS", allEdits)}
       </div>
       <div
         style={{
@@ -101,14 +77,7 @@ const Administracion = () => {
           }}
         />
         <p>Eliminar cuentas administradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "DELETE_ADMINS", allEdits)}
       </div>
       <div
         style={{
@@ -125,15 +94,7 @@ const Administracion = () => {
           }}
         />
         <p>Ver roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "LIST_ADMIN_ROLES", allEdits)}
       </div>
       <div
         style={{
@@ -150,15 +111,7 @@ const Administracion = () => {
           }}
         />
         <p>Editar roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "EDIT_ADMIN_ROLES", allEdits)}
       </div>
       <div
         style={{
@@ -175,15 +128,7 @@ const Administracion = () => {
           }}
         />
         <p>Crear roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "CREATE_ADMIN_ROLES", allEdits)}
       </div>
       <div
         style={{
@@ -200,15 +145,7 @@ const Administracion = () => {
           }}
         />
         <p>Eliminar roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "DELETE_ADMIN_ROLES", allEdits)}
       </div>
     </Card>
   );

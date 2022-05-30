@@ -1,10 +1,12 @@
 import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { dynamicIcons } from "./dynamicIcons";
 
 const PermissionsMarcas = () => {
+  const { currentRol } = useSelector((state) => state["roles"]);
+
   return (
     <div className={styles.containerPermissions}>
       <div
@@ -15,15 +17,11 @@ const PermissionsMarcas = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver marca de vehículos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "LIST_CAR_BRAND",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -33,14 +31,11 @@ const PermissionsMarcas = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar marca de vehículos:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "EDIT_CAR_BRAND",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -50,15 +45,11 @@ const PermissionsMarcas = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear marca de vehículos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "CREATE_CAR_BRAND",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -68,32 +59,11 @@ const PermissionsMarcas = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar marca de vehículos:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexFlow: "row wrap",
-        }}
-      >
-        <VscDebugBreakpointLog className={styles.vsIcon} />
-        <p>Exportar pasajeros:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "DELETE_CAR_BRAND",
+          currentRol.permissions
+        )}
       </div>
     </div>
   );

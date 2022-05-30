@@ -22,11 +22,11 @@ import CheckMarcas from "./Checkbox/CheckMarcas";
 import CheckAdministracion from "./Checkbox/CheckAdministracion";
 import CheckHuellasDeCarbono from "./Checkbox/CheckHuellasDeCarbono";
 import ModalResume from "./ModalResume";
-import Swal from "sweetalert2";
-import { saveRol, alertMessage } from "./alerts";
+import { saveRol, warningRol } from "./alerts";
 import Fade from "react-reveal/Fade";
-import axios from "axios";
 import { notify } from "./toast";
+import { permissions } from "../PermissionsInfo/permissions";
+import { convertDataToEdit } from "../EditRol/helpers/convertData";
 
 const { TabPane } = Tabs;
 
@@ -55,7 +55,8 @@ const NewRol = () => {
   const [companies, setCompanies] = useState([]);
   const [brands, setBrands] = useState([]);
   const [administration, setAdministration] = useState([]);
-  const [fingerprint, setFingerprint] = useState([]);
+  const [carbonFootPrints, setCarbonFootPrints] = useState([]);
+  const [allEdits, setAllEdits] = useState([]);
   const [switchOn, setSwitchOn] = useState(false);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const NewRol = () => {
       ...companies,
       ...brands,
       ...administration,
-      ...fingerprint,
+      ...carbonFootPrints,
     ]);
   }, [
     name,
@@ -76,12 +77,28 @@ const NewRol = () => {
     companies,
     brands,
     administration,
-    fingerprint,
+    carbonFootPrints,
   ]);
 
   useEffect(() => {
-    console.log(data, "data");
-  }, [data]);
+    setAllEdits([
+      ...passengers,
+      ...drivers,
+      ...statistics,
+      ...companies,
+      ...brands,
+      ...administration,
+      ...carbonFootPrints,
+    ]);
+  }, [
+    passengers,
+    drivers,
+    statistics,
+    companies,
+    brands,
+    administration,
+    carbonFootPrints,
+  ]);
 
   useEffect(() => {
     if (switchOn) notify("success", "Se activó el 100% de los permisos.");
@@ -89,6 +106,7 @@ const NewRol = () => {
 
   const resume = () => {
     setIsModalVisible(true);
+    let finalDataToResume = convertDataToEdit(allEdits);
   };
 
   const onSwitchChange = (checked) => {
@@ -101,27 +119,29 @@ const NewRol = () => {
 
   const createRol = () => {
     let finalData = {};
+    let permissionsData;
+    if (switchOn) permissionsData = permissions;
+    else permissionsData = data.filter((permission) => permission !== "");
 
     if (!name)
-      return alertMessage(
-        "Nombre del rol",
-        "Por favor, completa el nombre del rol que deseas agregar",
-        "warning"
+      return warningRol(
+        "Rol vacío.",
+        "Por favor, completa el nombre del rol antes de guardar."
       );
 
-    console.log(data, "data");
-    if (data.length === 0 || data[0] === "")
-      return alertMessage(
+    if (permissionsData.length === 0)
+      return warningRol(
         "Permisos",
-        "Por favor, selecciona al menos un permiso",
-        "warning"
+        "Por favor, selecciona al menos un permiso."
       );
 
     finalData = {
-      isSuperAdmin: false,
+      isSuperAdmin: switchOn ? true : false,
       name,
-      permissions: data,
+      permissions: permissionsData,
     };
+
+    console.log(finalData, "FINAL");
 
     return saveRol(name, finalData, history);
   };
@@ -260,7 +280,9 @@ const NewRol = () => {
                 <CheckAdministracion setAdministration={setAdministration} />
               </TabPane>
               <TabPane tab="Huellas de Carbono" key="7">
-                <CheckHuellasDeCarbono setFingerprint={setFingerprint} />
+                <CheckHuellasDeCarbono
+                  setCarbonFootPrints={setCarbonFootPrints}
+                />
               </TabPane>
             </Tabs>
           </Fade>
@@ -291,6 +313,7 @@ const NewRol = () => {
             <ModalResume
               isModalVisible={isModalVisible}
               setIsModalVisible={setIsModalVisible}
+              allEdits={allEdits}
             />
           </div>
         </Form.Item>

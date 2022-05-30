@@ -1,7 +1,5 @@
-import { Button, Modal, Typography } from "antd";
-import { useState } from "react";
+import { Modal, Typography } from "antd";
 import styles from "./styles.module.css";
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import Pasajeros from "./InfoCards/Pasajeros";
 import Conductores from "./InfoCards/Conductores";
 import Estadisticas from "./InfoCards/Estadisticas";
@@ -9,13 +7,8 @@ import Companias from "./InfoCards/Companias";
 import Marcas from "./InfoCards/Marcas";
 import Administracion from "./InfoCards/Administracion";
 import HuellasDeCarbono from "./InfoCards/HuellasDeCarbono";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
-import { VscDebugBreakpointLog } from "react-icons/vsc";
 
-const App = ({ isModalVisible, setIsModalVisible }) => {
-  //   const [isModalVisible, setIsModalVisible] = useState(false);
-
+const ModalResume = ({ isModalVisible, setIsModalVisible, allEdits }) => {
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -53,7 +46,7 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
                 marginTop: "1rem",
               }}
             >
-              <Pasajeros />
+              <Pasajeros allEdits={allEdits} />
             </div>
             <div
               style={{
@@ -64,19 +57,7 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
                 marginTop: "1rem",
               }}
             >
-              <Conductores />
-            </div>
-
-            <div
-              style={{
-                flexBasis: "24%",
-                display: "flex",
-                flexFlow: "column wrap",
-                padding: "12px",
-                marginTop: "1rem",
-              }}
-            >
-              <Marcas />
+              <Conductores allEdits={allEdits} />
             </div>
 
             <div
@@ -88,7 +69,19 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
                 marginTop: "1rem",
               }}
             >
-              <Companias />
+              <Marcas allEdits={allEdits} />
+            </div>
+
+            <div
+              style={{
+                flexBasis: "24%",
+                display: "flex",
+                flexFlow: "column wrap",
+                padding: "12px",
+                marginTop: "1rem",
+              }}
+            >
+              <Companias allEdits={allEdits} />
             </div>
             <div>
               <div
@@ -100,7 +93,7 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
                   marginTop: "1rem",
                 }}
               >
-                <Estadisticas />
+                <Estadisticas allEdits={allEdits} />
               </div>
               <div
                 style={{
@@ -111,7 +104,7 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
                   marginTop: "1rem",
                 }}
               >
-                <HuellasDeCarbono />
+                <HuellasDeCarbono allEdits={allEdits} />
               </div>
             </div>
 
@@ -124,7 +117,7 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
                 marginTop: "1rem",
               }}
             >
-              <Administracion />
+              <Administracion allEdits={allEdits} />
             </div>
           </section>
         </div>
@@ -133,4 +126,4 @@ const App = ({ isModalVisible, setIsModalVisible }) => {
   );
 };
 
-export default App;
+export default ModalResume;

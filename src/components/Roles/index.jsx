@@ -1,4 +1,4 @@
-import { Button, Space, Table, Typography, Tabs, Switch } from "antd";
+import { Button, Space, Table, Typography, Tabs } from "antd";
 import { useEffect, useState } from "react";
 import { IoIosPeople } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
@@ -14,8 +14,10 @@ import PermissionsAdministracion from "./PermissionsInfo/PermissionsAdministraci
 import PermissionsHuellasDeCarbono from "./PermissionsInfo/PermissionsHuellasDeCarbono";
 import EditRol from "./EditRol";
 import axios from "axios";
-import { OrderedListOutlined } from "@ant-design/icons";
-import PreloaderApp from '../Loader';
+import PreloaderApp from "../Loader";
+import { deleteRol } from "./NewRol/alerts";
+import { clearCurrentRol, setCurrentRol } from "../../globalState/rolesActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const { Title } = Typography;
 
@@ -27,26 +29,33 @@ const Roles = () => {
   const [viewRol, setViewRol] = useState(false);
   const [editP, setEditP] = useState(false);
   const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { currentRol } = useSelector((state) => state["roles"]);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND}/admin-roles`)
-      .then((response) => {
-        let finalData = response.data
-          .filter((rol) => rol.name)
-          .map((role) => {
-            return { id: role._id, name: role.name };
-          });
-        setData(finalData);
-      })
-      .catch((error) => console.log(error));
-  }, [data]);
+    if (!viewRol && !editP) {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND}/admin-roles`)
+        .then((response) => {
+          let finalData = response.data
+            .filter((rol) => rol.name)
+            .map((role) => {
+              return { id: role._id, name: role.name };
+            });
+          setData(finalData);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [viewRol, editP]);
+
+  useEffect(() => {
+    if (!viewRol && !editP) dispatch(clearCurrentRol());
+  }, [viewRol, editP]);
 
   const onChange = (key) => {
     console.log(key);
   };
-
-  const history = useHistory();
 
   const handleChange = (pagination, filters, sorter) => {
     console.log("Various parameters", pagination, filters, sorter);
@@ -59,7 +68,7 @@ const Roles = () => {
     await axios
       .get(`${process.env.REACT_APP_BACKEND}/admin-roles/${id}`)
       .then((response) => {
-        console.log(response.data);
+        dispatch(setCurrentRol(response.data));
       })
       .catch((error) => console.log(error));
     setViewRol(true);
@@ -81,6 +90,10 @@ const Roles = () => {
   const backEdit = () => {
     setViewRol(true);
     setEditP(false);
+  };
+
+  const deleteAccount = (id, name) => {
+    deleteRol(id, name, setViewRol, setEditP);
   };
 
   const columns = [
@@ -137,7 +150,7 @@ const Roles = () => {
               </Title>
             </div>
 
-            <Button className={styles.buttonNewRol} onClick={goToNewRol}>
+            <Button className={styles.buttonsPurple} onClick={goToNewRol}>
               Nuevo rol
             </Button>
           </Space>
@@ -197,19 +210,26 @@ const Roles = () => {
                   marginLeft: "8px",
                 }}
               >
-                Permisos para "Super Admin"
+                Permisos para {currentRol.name}
               </Title>
             </div>
 
             <div>
               <Button
-                className={styles.buttonNewRol}
+                className={styles.buttonsPurple}
+                onClick={() => deleteAccount(currentRol._id, currentRol.name)}
+                style={{ marginRight: "1rem" }}
+              >
+                Eliminar rol
+              </Button>
+              <Button
+                className={styles.buttonsPurple}
                 onClick={editPermissions}
                 style={{ marginRight: "1rem" }}
               >
                 Editar permisos
               </Button>
-              <Button className={styles.buttonNewRol} onClick={detailBack}>
+              <Button className={styles.buttonsPurple} onClick={detailBack}>
                 Volver
               </Button>
             </div>
@@ -240,7 +260,13 @@ const Roles = () => {
           </Tabs>
         </div>
       )}
-      {editP && <EditRol backEdit={backEdit} />}
+      {editP && (
+        <EditRol
+          backEdit={backEdit}
+          setViewRol={setViewRol}
+          setEditP={setEditP}
+        />
+      )}
     </div>
   );
 };

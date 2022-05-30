@@ -3,14 +3,15 @@ import { Card } from "antd";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { dynamicIcons } from "../../PermissionsInfo/dynamicIcons";
 
-const Companias = () => {
+const Companias = ({ allEdits }) => {
   return (
     <Card
       title="Companias"
       style={{
         width: 280,
-        height: 320
+        height: 320,
       }}
     >
       <div
@@ -28,15 +29,7 @@ const Companias = () => {
           }}
         />
         <p>Ver compañías aseguradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "LIST_COMPANY_INSURANCE", allEdits)}
       </div>
       <div
         style={{
@@ -53,14 +46,7 @@ const Companias = () => {
           }}
         />
         <p>Editar compañías aseguradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "EDIT_COMPANY_INSURANCE", allEdits)}
       </div>
       <div
         style={{
@@ -77,15 +63,7 @@ const Companias = () => {
           }}
         />
         <p>Crear compañías aseguradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "CREATE_COMPANY_INSURANCE", allEdits)}
       </div>
       <div
         style={{
@@ -102,14 +80,7 @@ const Companias = () => {
           }}
         />
         <p>Eliminar compañías aseguradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "DELETE_COMPANY_INSURANCE", allEdits)}
       </div>
     </Card>
   );

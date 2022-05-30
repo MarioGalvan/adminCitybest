@@ -1,10 +1,12 @@
 import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { dynamicIcons } from "./dynamicIcons";
 
 const PermissionsAdministracion = () => {
+  const { currentRol } = useSelector((state) => state["roles"]);
+
   return (
     <div className={styles.containerPermissions}>
       <div
@@ -15,15 +17,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver cuentas administradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "LIST_ADMINS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -33,14 +31,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar cuentas administradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "EDIT_ADMINS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -50,15 +45,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear cuentas administradoras:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "CREATE_ADMINS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -68,14 +59,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar cuentas administradoras:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "DELETE_ADMINS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -85,15 +73,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "LIST_ADMIN_ROLES",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -103,15 +87,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "EDIT_ADMIN_ROLES",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -121,14 +101,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Crear roles administrativos:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "CREATE_ADMIN_ROLES",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -138,15 +115,11 @@ const PermissionsAdministracion = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar roles administrativos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "DELETE_ADMIN_ROLES",
+          currentRol.permissions
+        )}
       </div>
     </div>
   );

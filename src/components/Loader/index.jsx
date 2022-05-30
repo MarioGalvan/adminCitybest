@@ -1,8 +1,8 @@
 const PreloaderApp = () => {
   return (
-    <div class="preloaderBg" id="preloader">
-      <div class="preloader"></div>
-      <div class="preloader2"></div>
+    <div className="preloaderBg" id="preloader">
+      <div className="preloader"></div>
+      <div className="preloader2"></div>
     </div>
   );
 };

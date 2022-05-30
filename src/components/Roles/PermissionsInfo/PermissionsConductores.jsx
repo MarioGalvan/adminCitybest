@@ -1,10 +1,12 @@
 import React from "react";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { ImCross } from "react-icons/im";
-import { TiTick } from "react-icons/ti";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
+import { dynamicIcons } from "./dynamicIcons";
 
 const PermissionsPasajeros = () => {
+  const { currentRol } = useSelector((state) => state["roles"]);
+
   return (
     <div className={styles.containerPermissions}>
       <div
@@ -15,15 +17,11 @@ const PermissionsPasajeros = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Ver conductores:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "LIST_DRIVERS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -33,14 +31,11 @@ const PermissionsPasajeros = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Editar conductores:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "EDIT_DRIVERS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -50,15 +45,11 @@ const PermissionsPasajeros = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Aprobar/rechazar documentos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "CHECK_DRIVER_DOCUMENTS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -68,14 +59,11 @@ const PermissionsPasajeros = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Bloquear conductores:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "BLOCK_DRIVERS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -85,15 +73,11 @@ const PermissionsPasajeros = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Eliminar conductores:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "DELETE_DRIVERS",
+          currentRol.permissions
+        )}
       </div>
       <div
         style={{
@@ -103,15 +87,11 @@ const PermissionsPasajeros = () => {
       >
         <VscDebugBreakpointLog className={styles.vsIcon} />
         <p>Exportar conductores:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(
+          currentRol.isSuperAdmin,
+          "EXPORT_DRIVERS",
+          currentRol.permissions
+        )}
       </div>
     </div>
   );

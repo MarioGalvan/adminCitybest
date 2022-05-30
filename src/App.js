@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
-import store from "./globalState/store";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { Persistor } from "./globalState/store";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -25,29 +26,43 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <Switch>
-          <Route path="/sign-up" exact component={SignUp} />
-          <Route path="/sign-in" exact component={SignIn} />
+        <PersistGate loading={null} persistor={Persistor}>
+          <Switch>
+            <Route path="/sign-up" exact component={SignUp} />
+            <Route path="/sign-in" exact component={SignIn} />
 
-          <Main>
-            <ProtectedRoute exact path="/Dashboard" component={Home} />
-            <ProtectedRoute exact path="/" component={Home} />
-            <ProtectedRoute exact path="/Cuentas" component={Account} />
-            <ProtectedRoute exact path="/Cuentas/Nueva_Cuenta" component={NewAccount} />
-            <ProtectedRoute exact path="/Roles" component={Roles} />
-            <ProtectedRoute exact path="/Roles/Nuevo_Rol" component={NewRol} />
-            <ProtectedRoute exact path="/Marcas" component={Marcas} />
-            <ProtectedRoute exact path="/Aseguradoras" component={Home} />
-            <ProtectedRoute
-              exact
-              path="/huella_carbono"
-              component={CarbonFootprint}
-            />
-            <ProtectedRoute exact path="/Pasajeros" component={Passengers} />
-            <ProtectedRoute exact path="/Conductores" component={Drivers} />
-            <ProtectedRoute exact path="/Estadisticas" component={Statistics} />
-          </Main>
-        </Switch>
+            <Main>
+              <ProtectedRoute exact path="/Dashboard" component={Home} />
+              <ProtectedRoute exact path="/" component={Home} />
+              <ProtectedRoute exact path="/Cuentas" component={Account} />
+              <ProtectedRoute
+                exact
+                path="/Cuentas/Nueva_Cuenta"
+                component={NewAccount}
+              />
+              <ProtectedRoute exact path="/Roles" component={Roles} />
+              <ProtectedRoute
+                exact
+                path="/Roles/Nuevo_Rol"
+                component={NewRol}
+              />
+              <ProtectedRoute exact path="/Marcas" component={Marcas} />
+              <ProtectedRoute exact path="/Aseguradoras" component={Home} />
+              <ProtectedRoute
+                exact
+                path="/huella_carbono"
+                component={CarbonFootprint}
+              />
+              <ProtectedRoute exact path="/Pasajeros" component={Passengers} />
+              <ProtectedRoute exact path="/Conductores" component={Drivers} />
+              <ProtectedRoute
+                exact
+                path="/Estadisticas"
+                component={Statistics}
+              />
+            </Main>
+          </Switch>
+        </PersistGate>
       </Provider>
     </div>
   );

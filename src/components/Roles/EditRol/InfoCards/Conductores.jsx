@@ -3,14 +3,15 @@ import { Card } from "antd";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { dynamicIcons } from "../../PermissionsInfo/dynamicIcons";
 
-const Conductores = () => {
+const Conductores = ({ allEdits }) => {
   return (
     <Card
       title="Conductores"
       style={{
         width: 255,
-        height: 320
+        height: 320,
       }}
     >
       <div
@@ -28,15 +29,7 @@ const Conductores = () => {
           }}
         />
         <p>Ver conductores:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "Ver conductores", allEdits)}
       </div>
       <div
         style={{
@@ -53,14 +46,7 @@ const Conductores = () => {
           }}
         />
         <p>Editar conductores:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "Editar conductores", allEdits)}
       </div>
       <div
         style={{
@@ -77,15 +63,7 @@ const Conductores = () => {
           }}
         />
         <p>Aprobar/rechazar documentos:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "Aprobar/rechazar documentos", allEdits)}
       </div>
       <div
         style={{
@@ -102,14 +80,7 @@ const Conductores = () => {
           }}
         />
         <p>Bloquear conductores:</p>{" "}
-        <TiTick
-          style={{
-            width: "1.4rem",
-            height: "1.4rem",
-            marginLeft: "5px",
-            color: "green",
-          }}
-        />
+        {dynamicIcons(false, "Bloquear conductores", allEdits)}
       </div>
       <div
         style={{
@@ -126,15 +97,7 @@ const Conductores = () => {
           }}
         />
         <p>Eliminar conductores:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "Eliminar conductores", allEdits)}
       </div>
       <div
         style={{
@@ -151,15 +114,7 @@ const Conductores = () => {
           }}
         />
         <p>Exportar conductores:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "Exportar conductores", allEdits)}
       </div>
     </Card>
   );

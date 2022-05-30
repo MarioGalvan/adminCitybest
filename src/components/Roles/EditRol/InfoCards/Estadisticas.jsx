@@ -3,14 +3,15 @@ import { Card } from "antd";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { dynamicIcons } from "../../PermissionsInfo/dynamicIcons";
 
-const Estadisticas = () => {
+const Estadisticas = ({ allEdits }) => {
   return (
     <Card
       title="Estadisticas"
       style={{
         width: 190,
-        height: 140
+        height: 140,
       }}
     >
       <div
@@ -28,15 +29,7 @@ const Estadisticas = () => {
           }}
         />
         <p>Ver estadísticas:</p>{" "}
-        <ImCross
-          style={{
-            width: "0.7rem",
-            height: "0.7rem",
-            marginTop: "6px",
-            marginLeft: "5px",
-            color: "red",
-          }}
-        />
+        {dynamicIcons(false, "Ver estadísticas", allEdits)}
       </div>
     </Card>
   );

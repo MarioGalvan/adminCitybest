@@ -6,7 +6,7 @@ const CheckboxGroup = Checkbox.Group;
 const plainOptions = ["Ver estadísticas"];
 const defaultCheckedList = [""];
 
-const HuellasDeCarbono = ({ setFingerprint }) => {
+const HuellasDeCarbono = ({ setCarbonFootPrints }) => {
   const [checkedList, setCheckedList] = useState(defaultCheckedList);
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
@@ -19,9 +19,9 @@ const HuellasDeCarbono = ({ setFingerprint }) => {
     let data = [...list];
 
     if (data.indexOf("Ver estadísticas") !== -1)
-      data[data.indexOf("Ver estadísticas")] = "SEE_STATS_FINGERPRINT";
+      data[data.indexOf("Ver estadísticas")] = "SEE_STATS_CARBONFOOTPRINTS";
 
-    setFingerprint(data);
+      setCarbonFootPrints(data);
   };
 
   // useEffect(() => {
@@ -35,8 +35,8 @@ const HuellasDeCarbono = ({ setFingerprint }) => {
   };
 
   useEffect(() => {
-    if (checkAll) setFingerprint(["SEE_STATS_FINGERPRINT"]);
-    else setFingerprint([""]);
+    if (checkAll) setCarbonFootPrints(["SEE_STATS_CARBONFOOTPRINTS"]);
+    else setCarbonFootPrints([""]);
   }, [checkAll]);
 
   return (

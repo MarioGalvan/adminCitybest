@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, Typography, Space, Button, Input, Form, Divider } from "antd";
 import { TiEdit } from "react-icons/ti";
 import { COLORPRIMARY } from "../../../Hooks/constants";
@@ -13,11 +13,23 @@ import CheckMarcas from "./Checkbox/CheckMarcas";
 import CheckAdministracion from "./Checkbox/CheckAdministracion";
 import CheckHuellasDeCarbono from "./Checkbox/CheckHuellasDeCarbono";
 import ModalResume from "./ModalResume";
+import { useSelector } from "react-redux";
+import {
+  currentPassengers,
+  currentDrivers,
+  currentStatistics,
+  currentCompanies,
+  currentBrands,
+  currentAdministration,
+  currentCarbonFootPrints,
+} from "./helpers/currentPermissions";
+import { convertDataToEdit } from "./helpers/convertData";
+import { editRol, warningRol } from "./helpers/alerts";
 
 const { TabPane } = Tabs;
 
 const onChange = (key) => {
-  console.log(key);
+  // console.log(key);
 };
 
 const { Title } = Typography;
@@ -30,12 +42,90 @@ const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-const EditRol = ({backEdit}) => {
+const EditRol = ({ backEdit, setViewRol, setEditP }) => {
   const history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { currentRol } = useSelector((state) => state["roles"]);
+  const [editPassengers, setEditPassengers] = useState([]);
+  const [editDrivers, setEditDrivers] = useState([]);
+  const [editStatistics, setEditStatistics] = useState([]);
+  const [editCompanies, setEditCompanies] = useState([]);
+  const [editBrands, setEditBrands] = useState([]);
+  const [editAdministration, setEditAdministration] = useState([]);
+  const [editHuellasDeCarbono, setEditHuellasDeCarbono] = useState([]);
+  const [allEdits, setAllEdits] = useState([]);
+  const [nameEdit, setNameEdit] = useState();
+
+  useEffect(() => {
+    setAllEdits(currentRol.permissions);
+    setEditPassengers(currentPassengers(currentRol.permissions));
+    setEditDrivers(currentDrivers(currentRol.permissions));
+    setEditStatistics(currentStatistics(currentRol.permissions));
+    setEditCompanies(currentCompanies(currentRol.permissions));
+    setEditBrands(currentBrands(currentRol.permissions));
+    setEditAdministration(currentAdministration(currentRol.permissions));
+    setEditHuellasDeCarbono(currentCarbonFootPrints(currentRol.permissions));
+
+    setNameEdit(currentRol.name);
+  }, []);
+
+  useEffect(() => {
+    setAllEdits([
+      ...editPassengers,
+      ...editDrivers,
+      ...editStatistics,
+      ...editCompanies,
+      ...editBrands,
+      ...editAdministration,
+      ...editHuellasDeCarbono,
+    ]);
+  }, [
+    editPassengers,
+    editDrivers,
+    editStatistics,
+    editCompanies,
+    editBrands,
+    editAdministration,
+    editHuellasDeCarbono,
+  ]);
 
   const resume = () => {
     setIsModalVisible(true);
+    let finalDataToResume = convertDataToEdit(allEdits);
+  };
+
+  const buttonEdit = () => {
+    let permissions = convertDataToEdit(allEdits);
+    let name = document.getElementById("nameRol").value;
+
+    if (!name)
+      return warningRol(
+        "Nombre vacío",
+        "Por favor, complete el nombre del rol antes de editar."
+      );
+
+    if (permissions.length === 0)
+      return warningRol(
+        "Permisos",
+        "Por favor, seleccione al menos 1 permiso."
+      );
+
+    let finalDataToEdit = {
+      name,
+      permissions,
+    };
+
+    console.log(finalDataToEdit, "FINAL");
+
+    editRol(
+      name,
+      currentRol.name,
+      currentRol._id,
+      finalDataToEdit,
+      history,
+      setViewRol,
+      setEditP
+    );
   };
 
   return (
@@ -113,30 +203,58 @@ const EditRol = ({backEdit}) => {
           className={styles.labelRol}
           //   hasFeedback
         >
-          <Input placeholder="Nombre del rol" className={styles.inputNewRol} />
+          <Input
+            placeholder="Nombre del rol"
+            className={styles.inputNewRol}
+            defaultValue={currentRol.name}
+            value={nameEdit}
+            onChange={(e) => setNameEdit(e.target.value)}
+            id="nameRol"
+          />
         </Form.Item>
 
         <Tabs defaultActiveKey="1" onChange={onChange}>
           <TabPane tab="Pasajeros" key="1">
-            <CheckPasajeros />
+            <CheckPasajeros
+              permissions={currentRol.permissions}
+              setEditPassengers={setEditPassengers}
+            />
           </TabPane>
           <TabPane tab="Conductores" key="2">
-            <CheckConductores />
+            <CheckConductores
+              permissions={currentRol.permissions}
+              setEditDrivers={setEditDrivers}
+            />
           </TabPane>
           <TabPane tab="Estadísticas" key="3">
-            <CheckEstadisticas />
+            <CheckEstadisticas
+              permissions={currentRol.permissions}
+              setEditStatistics={setEditStatistics}
+            />
           </TabPane>
           <TabPane tab="Compañías aseguradoras" key="4">
-            <CheckCompanias />
+            <CheckCompanias
+              permissions={currentRol.permissions}
+              setEditCompanies={setEditCompanies}
+            />
           </TabPane>
           <TabPane tab="Marca de vehículos" key="5">
-            <CheckMarcas />
+            <CheckMarcas
+              permissions={currentRol.permissions}
+              setEditBrands={setEditBrands}
+            />
           </TabPane>
           <TabPane tab="Administración" key="6">
-            <CheckAdministracion />
+            <CheckAdministracion
+              permissions={currentRol.permissions}
+              setEditAdministration={setEditAdministration}
+            />
           </TabPane>
           <TabPane tab="Huellas de Carbono" key="7">
-            <CheckHuellasDeCarbono />
+            <CheckHuellasDeCarbono
+              permissions={currentRol.permissions}
+              setEditHuellasDeCarbono={setEditHuellasDeCarbono}
+            />
           </TabPane>
         </Tabs>
         <Divider />
@@ -156,14 +274,15 @@ const EditRol = ({backEdit}) => {
             </Button>
             <Button
               type="primary"
-              htmlType="submit"
+              onClick={buttonEdit}
               className={styles.buttonSave}
             >
-              Guardar
+              Editar
             </Button>
             <ModalResume
               isModalVisible={isModalVisible}
               setIsModalVisible={setIsModalVisible}
+              allEdits={allEdits}
             />
           </div>
         </Form.Item>
